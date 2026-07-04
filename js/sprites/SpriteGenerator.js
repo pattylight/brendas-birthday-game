@@ -49,8 +49,8 @@ const SpriteGen = {
         skin: '#E7B98F',
         skinDark: '#C68642',
         skinLight: '#F3D3B0',
-        hair: '#B9BEC4',        // warm silver-gray hair
-        hairHighlight: '#D4D8DC',
+        hair: '#E6C069',        // warm blonde hair
+        hairHighlight: '#F4DD9C',
         sunglasses: '#2b2b2b',
         sunglassesLens: '#3a5a6a',
         sunglassesShine: '#FFFACD',
@@ -221,7 +221,7 @@ const SpriteGen = {
     },
 
     // ==========================================
-    // S'MORE — Campfire collectible (16x16)
+    // S'MORE — Glamping treat collectible (16x16)
     // ==========================================
     generateMartini() {
         const _ = '.';

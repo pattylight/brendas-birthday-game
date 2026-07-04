@@ -1,6 +1,6 @@
 {
-    "name": "Brenda's Camping Adventure",
-    "short_name": "Camping Game",
+    "name": "Brenda's Glamping Adventure",
+    "short_name": "Glamping Game",
     "start_url": "./index.html",
     "display": "fullscreen",
     "orientation": "landscape",

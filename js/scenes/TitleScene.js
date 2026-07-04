@@ -39,7 +39,7 @@ class TitleScene extends Phaser.Scene {
         this.createCruiseShip(w / 2, h - 110);
 
         // Title text
-        const titleShadow = this.add.text(w / 2 + 3, 63, "Brenda's\nCamping Adventure", {
+        const titleShadow = this.add.text(w / 2 + 3, 63, "Brenda's\nGlamping Adventure", {
             fontSize: '40px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#000000',
@@ -47,7 +47,7 @@ class TitleScene extends Phaser.Scene {
             lineSpacing: 5
         }).setOrigin(0.5).setAlpha(0.3);
 
-        const title = this.add.text(w / 2, 60, "Brenda's\nCamping Adventure", {
+        const title = this.add.text(w / 2, 60, "Brenda's\nGlamping Adventure", {
             fontSize: '40px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700',
@@ -148,7 +148,7 @@ class TitleScene extends Phaser.Scene {
             ['Camp', 'GameScene'],
             ['Garden', 'MemoryScene'],
             ['Raccoons', 'ShooScene'],
-            ['Campfire', 'NightClubScene'],
+            ['Jam', 'NightClubScene'],
             ['Storm', 'BossScene'],
             ['Victory', 'VictoryScene'],
             ['Checkin', 'MusterScene'],

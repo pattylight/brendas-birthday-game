@@ -1,4 +1,4 @@
-// ShooScene.js — Raccoons are raiding the campsite picnic while Tony grabs firewood! Shoo them off the food, Brenda!
+// ShooScene.js — Raccoons are raiding the campsite picnic while Tony ducks into the RV for snacks! Shoo them off the food, Brenda!
 class ShooScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ShooScene' });
@@ -103,7 +103,7 @@ class ShooScene extends Phaser.Scene {
             color: '#88CCFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
 
-        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Back in a sec — grabbing more firewood!"', {
+        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Back in a sec — grabbing more snacks from the RV!"', {
             fontSize: '23px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
@@ -482,14 +482,14 @@ class ShooScene extends Phaser.Scene {
         this.playVictoryJingle();
 
         this.time.delayedCall(4000, () => {
-            // Campfire transition
+            // RV party transition
             const overlay2 = this.add.rectangle(400, 225, 800, 450, 0x000000, 0.85)
                 .setDepth(300).setAlpha(0);
             const clubText1 = this.add.text(400, 180, "Time to celebrate Brenda's birthday...", {
                 fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFFFFF', stroke: '#000000', strokeThickness: 4
             }).setOrigin(0.5).setDepth(301).setAlpha(0);
-            const clubText2 = this.add.text(400, 225, '🎵 TO THE CAMPFIRE! 🎵', {
+            const clubText2 = this.add.text(400, 225, '🎵 TO THE RV PARTY! 🎵', {
                 fontSize: '29px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#2E8B7F', stroke: '#000000', strokeThickness: 5
             }).setOrigin(0.5).setDepth(301).setAlpha(0);

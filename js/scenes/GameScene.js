@@ -113,7 +113,7 @@ class GameScene extends Phaser.Scene {
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText3 = this.add.text(400, 240, 'roast some s\'mores!', {
+        const storyText3 = this.add.text(400, 240, 'enjoy some s\'mores!', {
             fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
@@ -188,7 +188,7 @@ class GameScene extends Phaser.Scene {
         this.add.triangle(160, 190, 0, 20, 15, 0, 30, 20, 0xFF4444, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.rectangle(175, 210, 3, 30, 0x8B4513, 0.6).setScrollFactor(sf).setDepth(dep);
         // Pool sign
-        this.add.text(350, 155, 'CAMPFIRE', {
+        this.add.text(350, 155, 'STRING LIGHTS', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
