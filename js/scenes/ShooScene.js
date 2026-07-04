@@ -1,4 +1,4 @@
-// ShooScene.js — Raccoons are raiding the campsite picnic while Tony ducks into the RV for snacks! Shoo them off the food, Brenda!
+// ShooScene.js — Raccoons are raiding the campsite picnic while Tony steps away! Shoo them off the tequila, Brenda!
 class ShooScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ShooScene' });
@@ -18,7 +18,7 @@ class ShooScene extends Phaser.Scene {
         // Pool in background
         this.add.rectangle(w / 2, 150, 300, 70, 0x40E0D0, 0.5).setDepth(-4);
         this.add.rectangle(w / 2, 150, 290, 60, 0x5DE0D0, 0.4).setDepth(-4);
-        this.add.text(w / 2, 125, 'CAMPSITE PICNIC', {
+        this.add.text(w / 2, 125, 'HAPPY HOUR', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#1565C0', strokeThickness: 2
         }).setOrigin(0.5).setDepth(-3).setAlpha(0.7);
@@ -103,7 +103,7 @@ class ShooScene extends Phaser.Scene {
             color: '#88CCFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
 
-        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Back in a sec — grabbing more snacks from the RV!"', {
+        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Guard the tequila, babe — nature calls!"', {
             fontSize: '23px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
@@ -127,7 +127,7 @@ class ShooScene extends Phaser.Scene {
                     color: '#FF4444', stroke: '#000000', strokeThickness: 5
                 }).setOrigin(0.5).setDepth(200);
 
-                const warn2 = this.add.text(w / 2, h / 2 - 15, "The raccoons smell the picnic\nand are raiding the food! 🦝", {
+                const warn2 = this.add.text(w / 2, h / 2 - 15, "The raccoons smell the tequila\nand they're going for the bottles! 🦝🍾", {
                     fontSize: '19px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FFD700', stroke: '#000000', strokeThickness: 4,
                     align: 'center'
@@ -298,7 +298,7 @@ class ShooScene extends Phaser.Scene {
         const girl = girlObj.sprite;
 
         // Brenda says "SHOO!"
-        const shooTexts = ['SHOO! \u{1F44B}', 'SCRAM! \u{1F624}', 'NOT THE FOOD! \u{1F357}', 'BYE! \u{1F44B}', 'GO ON, GIT! \u{1F645}', 'OH NO YOU DON\'T! \u{1F612}'];
+        const shooTexts = ['SHOO! \u{1F44B}', 'SCRAM! \u{1F624}', 'NOT THE TEQUILA! \u{1F37E}', 'BYE! \u{1F44B}', 'GO ON, GIT! \u{1F645}', 'OH NO YOU DON\'T! \u{1F612}'];
         const shoo = this.add.text(this.jennifer.x, this.jennifer.y - 30,
             shooTexts[Phaser.Math.Between(0, shooTexts.length - 1)], {
                 fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
@@ -434,7 +434,7 @@ class ShooScene extends Phaser.Scene {
         this.girls = [];
 
         const text = this.add.text(w / 2, h / 2 - 25,
-            'Picnic saved, Brenda!\nShooed ' + this.shooCount + ' raccoons away!', {
+            'Tequila saved, Brenda!\nShooed ' + this.shooCount + ' raccoons!', {
                 fontSize: '27px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFD700', stroke: '#000000', strokeThickness: 4,
                 align: 'center', lineSpacing: 8

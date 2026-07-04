@@ -32,7 +32,7 @@ class GameScene extends Phaser.Scene {
         this.platforms = this.physics.add.staticGroup();
         this.createLevel();
 
-        // Create s'mores (collectibles)
+        // Create margaritas (collectibles)
         this.martinis = this.physics.add.group();
         this.placeMartinis();
 
@@ -108,17 +108,17 @@ class GameScene extends Phaser.Scene {
             color: '#44FF44', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText2 = this.add.text(400, 205, 'Time to relax and', {
+        const storyText2 = this.add.text(400, 205, 'Time to kick back with', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText3 = this.add.text(400, 240, 'enjoy some s\'mores!', {
+        const storyText3 = this.add.text(400, 240, 'some margaritas!', {
             fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText4 = this.add.text(400, 285, 'Watch out for the raccoons after your s\'mores!', {
+        const storyText4 = this.add.text(400, 285, 'Watch out — the raccoons want your tequila!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF6666', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
@@ -188,7 +188,7 @@ class GameScene extends Phaser.Scene {
         this.add.triangle(160, 190, 0, 20, 15, 0, 30, 20, 0xFF4444, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.rectangle(175, 210, 3, 30, 0x8B4513, 0.6).setScrollFactor(sf).setDepth(dep);
         // Pool sign
-        this.add.text(350, 155, 'STRING LIGHTS', {
+        this.add.text(350, 155, 'THE BAR', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -684,7 +684,7 @@ class GameScene extends Phaser.Scene {
                 const h = this.cameras.main.height;
                 const overlay = this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.7)
                     .setScrollFactor(0).setDepth(400);
-                const retryText = this.add.text(w / 2, h / 2 - 20, 'A RACCOON GOT YOUR S\'MORE!', {
+                const retryText = this.add.text(w / 2, h / 2 - 20, 'A RACCOON SWIPED YOUR TEQUILA!', {
                     fontSize: '28px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FF4444', stroke: '#000000', strokeThickness: 5
                 }).setOrigin(0.5).setScrollFactor(0).setDepth(401);
@@ -815,7 +815,7 @@ class GameScene extends Phaser.Scene {
             fontSize: '29px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201).setScale(0.5);
-        const outroT2 = this.add.text(400, 235, 'Sunset yoga by the lake starts soon!', {
+        const outroT2 = this.add.text(400, 235, 'Happy hour at the RV starts soon!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201).setAlpha(0);

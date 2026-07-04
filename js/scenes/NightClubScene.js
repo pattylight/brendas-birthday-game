@@ -73,7 +73,7 @@ class NightClubScene extends Phaser.Scene {
         this.add.circle(w - 140, h - 140, 5, 0x111111).setDepth(-4);
 
         // Neon sign
-        this.neonText = this.add.text(w / 2, 70, '★ GLAMP JAM ★', {
+        this.neonText = this.add.text(w / 2, 70, '★ RV RAGER ★', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#FF00FF', strokeThickness: 1
         }).setOrigin(0.5).setDepth(10).setAlpha(0.9);
@@ -235,12 +235,12 @@ class NightClubScene extends Phaser.Scene {
 
         const overlay = this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.85).setDepth(200);
 
-        const title = this.add.text(w / 2, h / 2 - 60, '🎵 GLAMP JAM 🎵', {
+        const title = this.add.text(w / 2, h / 2 - 60, '🎵 RV RAGER 🎵', {
             fontSize: '32px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(201);
 
-        const subtitle = this.add.text(w / 2, h / 2 - 15, "It's Brenda's birthday sing-along under the RV string lights!", {
+        const subtitle = this.add.text(w / 2, h / 2 - 15, "It's Brenda's birthday and the margaritas are FLOWING!", {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setDepth(201);
@@ -620,7 +620,7 @@ class NightClubScene extends Phaser.Scene {
         else if (accuracy >= 50) { grade = 'C'; gradeColor = '#FFCC00'; }
         else { grade = 'D'; gradeColor = '#FF4444'; }
 
-        this.add.text(w / 2, h / 2 - 80, '🎵 SING-ALONG COMPLETE! 🎵', {
+        this.add.text(w / 2, h / 2 - 80, '🎵 PARTY COMPLETE! 🎵', {
             fontSize: '28px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(201);
@@ -642,7 +642,7 @@ class NightClubScene extends Phaser.Scene {
 
         // Brenda singing celebration
         const jenText = accuracy >= 70
-            ? "Brenda leads the whole crew in song! 🎶"
+            ? "Brenda dances 'til the margaritas run out! 🎶"
             : "Brenda had fun singing anyway! 😄";
         this.add.text(w / 2, h / 2 + 80, jenText, {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',

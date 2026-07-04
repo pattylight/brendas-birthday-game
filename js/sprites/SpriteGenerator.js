@@ -221,31 +221,32 @@ const SpriteGen = {
     },
 
     // ==========================================
-    // S'MORE — Glamping treat collectible (16x16)
+    // MARGARITA — Glamping collectible (16x16). Raccoons want the tequila!
     // ==========================================
     generateMartini() {
         const _ = '.';
-        const g = '#C9923E';   // graham cracker
-        const G = '#A9752B';   // graham cracker edge
-        const s = '#3B2410';   // chocolate
-        const m = '#FFF7E6';   // marshmallow
-        const t = '#E8C98F';   // toasted marshmallow edge
+        const o = '#CFE8F5';   // glass edge
+        const g = '#AEDD6B';   // margarita
+        const h = '#CDEB90';   // liquid highlight
+        const r = '#FFFFFF';   // salt rim
+        const s = '#DCEEF7';   // stem/base glass
+        const l = '#3FA535';   // lime wedge
 
         return [
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+            [_,_,r,r,r,r,r,r,r,r,r,r,_,_,_,_],
+            [_,_,o,g,g,g,g,g,g,g,g,o,l,l,_,_],
+            [_,_,_,o,g,g,h,g,g,g,o,_,l,l,_,_],
+            [_,_,_,_,o,g,g,g,g,o,_,_,_,_,_,_],
+            [_,_,_,_,_,o,g,g,o,_,_,_,_,_,_,_],
+            [_,_,_,_,_,_,o,o,_,_,_,_,_,_,_,_],
+            [_,_,_,_,_,_,s,s,_,_,_,_,_,_,_,_],
+            [_,_,_,_,_,_,s,s,_,_,_,_,_,_,_,_],
+            [_,_,_,_,_,_,s,s,_,_,_,_,_,_,_,_],
+            [_,_,_,_,_,s,s,s,s,_,_,_,_,_,_,_],
+            [_,_,_,_,s,s,s,s,s,s,_,_,_,_,_,_],
+            [_,_,_,s,s,s,s,s,s,s,s,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
-            [_,_,_,G,G,G,G,G,G,G,G,G,G,_,_,_],
-            [_,_,_,G,g,g,g,G,g,g,g,g,G,_,_,_],
-            [_,_,_,G,g,g,g,g,g,G,g,g,G,_,_,_],
-            [_,_,_,t,t,t,t,t,t,t,t,t,t,_,_,_],
-            [_,_,_,t,m,m,m,m,m,m,m,m,t,_,_,_],
-            [_,_,_,t,m,m,m,m,m,m,m,m,t,_,_,_],
-            [_,_,_,s,s,s,s,s,s,s,s,s,s,_,_,_],
-            [_,_,_,s,s,s,s,s,s,s,s,s,s,_,_,_],
-            [_,_,_,G,G,G,G,G,G,G,G,G,G,_,_,_],
-            [_,_,_,G,g,g,G,g,g,g,g,G,g,G,_,_],
-            [_,_,_,G,g,g,g,g,G,g,g,g,g,G,_,_],
-            [_,_,_,G,G,G,G,G,G,G,G,G,G,_,_,_],
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
         ];
@@ -985,11 +986,13 @@ const SpriteGen = {
         ctx.fillStyle = '#1a1a1a';
         ctx.beginPath(); ctx.arc(16, 19, 1.5, 0, Math.PI * 2); ctx.fill();
 
-        // Little snack they're eyeing (drumstick) above head
-        ctx.fillStyle = '#C97B3C';
-        ctx.beginPath(); ctx.arc(16, 2, 3, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#FBE3C4';
-        ctx.fillRect(15, 3, 2, 4);
+        // Little tequila bottle they're eyeing (above head)
+        ctx.fillStyle = '#C9A24B';       // amber tequila
+        ctx.fillRect(14, 2, 5, 6);       // body
+        ctx.fillStyle = '#7A5A2A';       // neck + cap
+        ctx.fillRect(15, 0, 3, 2);
+        ctx.fillStyle = '#F2E3B0';       // label
+        ctx.fillRect(14, 4, 5, 2);
 
         return canvas;
     },
