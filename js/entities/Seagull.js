@@ -1,4 +1,4 @@
-// Seagull.js — ChocolateBoss class for the boss fight
+// Seagull.js — Storm boss class for the boss fight (Maggie vs the thundercloud)
 class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'chocolate_boss');
@@ -112,7 +112,7 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
                 this.x + Phaser.Math.Between(-40, 40),
                 this.y + Phaser.Math.Between(-30, 30),
                 Phaser.Math.Between(4, 14),
-                0x5C3317, 0.8
+                0x8FB8CC, 0.8
             ).setDepth(20);
             this.scene.tweens.add({
                 targets: splat,
@@ -174,13 +174,13 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
         let phaseText = '';
         let phaseColor = '#FFFFFF';
         if (newPhase === 2) {
-            phaseText = 'PHASE 2: CHOCOLATE STORM!';
-            phaseColor = '#FF8C00';
-            this.setTint(0xCC6600);
+            phaseText = 'PHASE 2: THUNDERSTORM!';
+            phaseColor = '#4FC3F7';
+            this.setTint(0x8899AA);
         } else if (newPhase === 3) {
-            phaseText = 'PHASE 3: MELTDOWN!';
-            phaseColor = '#FF2222';
-            this.setTint(0xFF4444);
+            phaseText = 'PHASE 3: CLOUDBURST!';
+            phaseColor = '#FFE44D';
+            this.setTint(0x556677);
             this.setScale(1.15);
         }
 
@@ -317,7 +317,7 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
                         // Shockwave
                         const wave = this.scene.add.rectangle(
                             this.x, this.scene.cameras.main.height - 105,
-                            20, 8, 0x5C3317, 0.7
+                            20, 8, 0x8FB8CC, 0.7
                         ).setDepth(6);
                         this.scene.tweens.add({
                             targets: wave,

@@ -1,4 +1,4 @@
-// GameScene.js — Main platforming level on the cruise ship deck
+// GameScene.js — Main platforming level at the campground/beach
 class GameScene extends Phaser.Scene {
     constructor() {
         super({ key: 'GameScene' });
@@ -32,14 +32,14 @@ class GameScene extends Phaser.Scene {
         this.platforms = this.physics.add.staticGroup();
         this.createLevel();
 
-        // Create martinis (collectibles)
+        // Create s'mores (collectibles)
         this.martinis = this.physics.add.group();
         this.placeMartinis();
 
         // Create decorations
         this.createDecorations();
 
-        // Create enemies (creepy men to stomp!)
+        // Create enemies (raccoons to stomp!)
         this.enemies = this.physics.add.group();
         this.createEnemies();
 
@@ -103,22 +103,22 @@ class GameScene extends Phaser.Scene {
         const overlay = this.add.rectangle(400, 225, 800, 450, 0x000000, 0.7)
             .setScrollFactor(0).setDepth(200);
 
-        const storyText1 = this.add.text(400, 160, 'We made it on board!', {
+        const storyText1 = this.add.text(400, 160, 'We made it to the campground!', {
             fontSize: '31px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#44FF44', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText2 = this.add.text(400, 205, 'Time to relax with some', {
+        const storyText2 = this.add.text(400, 205, 'Time to relax and', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText3 = this.add.text(400, 240, 'Espresso Martinis!', {
+        const storyText3 = this.add.text(400, 240, 'roast some s\'mores!', {
             fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
 
-        const storyText4 = this.add.text(400, 285, 'Avoid the creepy men trying to hit on you!', {
+        const storyText4 = this.add.text(400, 285, 'Watch out for the raccoons after your s\'mores!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF6666', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201);
@@ -164,7 +164,7 @@ class GameScene extends Phaser.Scene {
             .setDepth(-5);
 
         // ==========================
-        // CRUISE SHIP SCENERY (background layer, scrollFactor 0.3-0.5)
+        // CAMPGROUND SCENERY (background layer, scrollFactor 0.3-0.5)
         // ==========================
         const sf = 0.4; // background scroll factor
         const dep = -4; // behind platforms but in front of ocean
@@ -188,7 +188,7 @@ class GameScene extends Phaser.Scene {
         this.add.triangle(160, 190, 0, 20, 15, 0, 30, 20, 0xFF4444, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.rectangle(175, 210, 3, 30, 0x8B4513, 0.6).setScrollFactor(sf).setDepth(dep);
         // Pool sign
-        this.add.text(350, 155, 'POOL DECK', {
+        this.add.text(350, 155, 'CAMPFIRE', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -210,7 +210,7 @@ class GameScene extends Phaser.Scene {
         this.add.circle(1065, 195, 3, 0x87CEEB, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.circle(1090, 190, 4, 0x87CEEB, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.circle(1075, 188, 3, 0x87CEEB, 0.6).setScrollFactor(sf).setDepth(dep);
-        this.add.text(800, 38, 'WATER SLIDE', {
+        this.add.text(800, 38, 'THE LAKE', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#1565C0', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -239,7 +239,7 @@ class GameScene extends Phaser.Scene {
         this.add.rectangle(1290, 165, 4, 40, 0x8B4513, 0.5).setScrollFactor(sf).setDepth(dep);
         this.add.circle(1290, 142, 6, 0xFF6600, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.circle(1290, 140, 4, 0xFFD700, 0.5).setScrollFactor(sf).setDepth(dep);
-        this.add.text(1400, 130, 'TIKI BAR', {
+        this.add.text(1400, 130, 'PICNIC AREA', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -264,7 +264,7 @@ class GameScene extends Phaser.Scene {
         // Heat lamps
         this.add.triangle(1830, 165, 0, 10, 8, 0, 16, 10, 0xDDDDDD, 0.4).setScrollFactor(sf).setDepth(dep);
         this.add.triangle(1970, 165, 0, 10, 8, 0, 16, 10, 0xDDDDDD, 0.4).setScrollFactor(sf).setDepth(dep);
-        this.add.text(1900, 150, 'OCEAN BUFFET', {
+        this.add.text(1900, 150, 'THE BEACH', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -303,7 +303,7 @@ class GameScene extends Phaser.Scene {
         // Speakers
         this.add.rectangle(2340, 150, 18, 25, 0x222222, 0.6).setScrollFactor(sf).setDepth(dep);
         this.add.rectangle(2560, 150, 18, 25, 0x222222, 0.6).setScrollFactor(sf).setDepth(dep);
-        this.add.text(2450, 95, 'CLUB OCEANA', {
+        this.add.text(2450, 95, 'HAMMOCK GROVE', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF69B4', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.8);
@@ -322,7 +322,7 @@ class GameScene extends Phaser.Scene {
         this.add.triangle(2940, 157, 0, 8, 8, 0, 16, 8, 0xFF4500, 0.5).setScrollFactor(sf).setDepth(dep);
         // Sand bunker
         this.add.ellipse(3050, 215, 40, 12, 0xF4D03F, 0.4).setScrollFactor(sf).setDepth(dep);
-        this.add.text(3000, 165, 'MINI GOLF', {
+        this.add.text(3000, 165, 'HIKING TRAIL', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#228B22', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -350,7 +350,7 @@ class GameScene extends Phaser.Scene {
         // Towels
         this.add.rectangle(3460, 218, 16, 8, 0xFFFFFF, 0.5).setScrollFactor(sf).setDepth(dep);
         this.add.rectangle(3462, 216, 14, 4, 0xFF69B4, 0.4).setScrollFactor(sf).setDepth(dep);
-        this.add.text(3450, 170, 'SPA & HOT TUB', {
+        this.add.text(3450, 170, 'THE GARDEN', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#4169E1', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -371,7 +371,7 @@ class GameScene extends Phaser.Scene {
         // Antenna
         this.add.rectangle(3770, 80, 2, 30, 0xCCCCCC, 0.4).setScrollFactor(sf).setDepth(dep);
         this.add.circle(3770, 64, 3, 0xFF0000, 0.5).setScrollFactor(sf).setDepth(dep);
-        this.add.text(3800, 85, 'BRIDGE', {
+        this.add.text(3800, 85, 'RV HOOKUP', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#2C3E50', strokeThickness: 2
         }).setOrigin(0.5).setScrollFactor(sf).setDepth(dep).setAlpha(0.7);
@@ -651,7 +651,7 @@ class GameScene extends Phaser.Scene {
 
             this.playStompSound();
         } else {
-            // Caught by creepy man! Game over.
+            // Caught by a raccoon! Game over.
             if (this.isGameOver) return;
             this.isGameOver = true;
 
@@ -659,14 +659,14 @@ class GameScene extends Phaser.Scene {
             this.physics.pause();
             jennifer.setTint(0xFF8888);
 
-            // Pick a random creepy line
+            // Pick a random raccoon line
             const creepyLines = [
-                '"Hey beautiful, you come here often?"',
-                '"You look just like my ex wife..."',
-                '"Can I buy you a drink? I\'m very rich."',
-                '"You smell nice... is that sunscreen?"',
-                '"I\'ve been watching you from the pool deck"',
-                '"Are you here alone? I\'m in cabin 401..."',
+                '"Ooh, is that a s\'more? Don\'t mind if I do!"',
+                '"Sneaky sneaky... gimme that snack!"',
+                '"I smelled marshmallows from a mile away!"',
+                '"Finders keepers, human!"',
+                '"I\'ve been raiding this campsite all week!"',
+                '"Nom nom nom... thanks for the treat!"',
             ];
             const line = creepyLines[Phaser.Math.Between(0, creepyLines.length - 1)];
 
@@ -684,7 +684,7 @@ class GameScene extends Phaser.Scene {
                 const h = this.cameras.main.height;
                 const overlay = this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.7)
                     .setScrollFactor(0).setDepth(400);
-                const retryText = this.add.text(w / 2, h / 2 - 20, 'CAUGHT BY A CREEP!', {
+                const retryText = this.add.text(w / 2, h / 2 - 20, 'A RACCOON GOT YOUR S\'MORE!', {
                     fontSize: '28px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FF4444', stroke: '#000000', strokeThickness: 5
                 }).setOrigin(0.5).setScrollFactor(0).setDepth(401);
@@ -815,7 +815,7 @@ class GameScene extends Phaser.Scene {
             fontSize: '29px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201).setScale(0.5);
-        const outroT2 = this.add.text(400, 235, 'Our chocolate pairing class starts soon!', {
+        const outroT2 = this.add.text(400, 235, 'Sunset yoga by the lake starts soon!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201).setAlpha(0);
@@ -977,11 +977,11 @@ class GameScene extends Phaser.Scene {
     }
 
     createUI() {
-        // Martini icon in UI
+        // S'more icon in UI
         this.scoreIcon = this.add.image(30, 28, 'martini')
             .setScrollFactor(0).setDepth(100).setScale(1.2);
 
-        // Martini counter text (just the numbers)
+        // S'more counter text (just the numbers)
         this.scoreText = this.add.text(50, 20, '0/' + this.totalMartinis, {
             fontSize: '27px',
             fontFamily: 'Arial Black, Arial, sans-serif',
@@ -995,8 +995,8 @@ class GameScene extends Phaser.Scene {
             fontSize: '24px'
         }).setScrollFactor(0).setDepth(100).setOrigin(0.5, 0);
 
-        // "HONEY" label above the dog
-        this.honeyLabel = this.add.text(0, 0, 'HONEY', {
+        // "MAGGIE" label above the dog
+        this.honeyLabel = this.add.text(0, 0, 'MAGGIE', {
             fontSize: '14px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700',

@@ -1,4 +1,4 @@
-// ShooScene.js — Girls are approaching your boyfriend! Shoo them away, Jennifer!
+// ShooScene.js — Raccoons are raiding the campsite picnic while Tony grabs firewood! Shoo them off the food, Brenda!
 class ShooScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ShooScene' });
@@ -9,7 +9,7 @@ class ShooScene extends Phaser.Scene {
 
         this.events.on('shutdown', () => this.stopMusic());
 
-        // === CRUISE SHIP POOL PARTY BACKGROUND ===
+        // === CAMPSITE PICNIC BACKGROUND ===
         // Sky
         this.add.rectangle(w / 2, 60, w, 120, 0x87CEEB).setDepth(-10);
         this.add.image(w - 60, 30, 'sun').setScale(0.8).setDepth(-9);
@@ -18,14 +18,14 @@ class ShooScene extends Phaser.Scene {
         // Pool in background
         this.add.rectangle(w / 2, 150, 300, 70, 0x40E0D0, 0.5).setDepth(-4);
         this.add.rectangle(w / 2, 150, 290, 60, 0x5DE0D0, 0.4).setDepth(-4);
-        this.add.text(w / 2, 125, 'POOL DECK PARTY', {
+        this.add.text(w / 2, 125, 'CAMPSITE PICNIC', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#1565C0', strokeThickness: 2
         }).setOrigin(0.5).setDepth(-3).setAlpha(0.7);
 
         // String lights
         for (let x = 30; x < w; x += 45) {
-            const col = [0xFFD700, 0xFF69B4, 0x87CEEB, 0xFF6B8A][Math.floor(x / 45) % 4];
+            const col = [0xFFD700, 0x2E8B7F, 0x87CEEB, 0xFF6B8A][Math.floor(x / 45) % 4];
             this.add.circle(x, 115, 3, col, 0.5).setDepth(-3);
         }
 
@@ -35,7 +35,7 @@ class ShooScene extends Phaser.Scene {
             this.add.rectangle(x + 16, h - 86, 30, 30, 0xB8976A, 0.5).setDepth(0);
         }
 
-        // === BOYFRIEND — center, looking jacked ===
+        // === TONY — center at the picnic table ===
         this.boyfriend = this.add.image(w / 2, h - 145, 'boyfriend').setDepth(5).setScale(1.2);
 
         // Flexing animation
@@ -46,19 +46,19 @@ class ShooScene extends Phaser.Scene {
         });
 
         // Label
-        this.bfLabel = this.add.text(w / 2, h - 188, 'PATRICK', {
+        this.bfLabel = this.add.text(w / 2, h - 188, 'TONY', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#44FF44', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setDepth(10);
 
-        // Heart eyes circle around boyfriend
+        // Critter paw-prints circle around Tony
         this.bfHearts = [];
         for (let i = 0; i < 3; i++) {
-            const heart = this.add.text(0, 0, '❤️', { fontSize: '18px' }).setDepth(4).setAlpha(0.4);
+            const heart = this.add.text(0, 0, '🐾', { fontSize: '18px' }).setDepth(4).setAlpha(0.4);
             this.bfHearts.push({ obj: heart, angle: i * (Math.PI * 2 / 3) });
         }
 
-        // === JENNIFER — controllable ===
+        // === BRENDA — controllable ===
         this.jennifer = new Jennifer(this, w / 2 - 60, h - 130);
         this.jennifer.setDepth(8);
 
@@ -74,7 +74,7 @@ class ShooScene extends Phaser.Scene {
         // === GAME STATE ===
         this.girls = [];
         this.shooCount = 0;
-        this.jealousyMeter = 0;
+        this.jealousyMeter = 0; // now tracks campsite chaos
         this.maxJealousy = 5;
         this.wave = 0;
         this.totalWaves = 6;
@@ -94,21 +94,21 @@ class ShooScene extends Phaser.Scene {
         const overlay = this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.75)
             .setDepth(199);
 
-        // Patrick sprite walks in
+        // Tony sprite walks in
         const patrickSprite = this.add.image(w / 2, h / 2 + 20, 'boyfriend')
             .setScale(1.0).setDepth(200);
 
-        const intro1 = this.add.text(w / 2, h / 2 - 65, 'Patrick says:', {
+        const intro1 = this.add.text(w / 2, h / 2 - 65, 'Tony says:', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#88CCFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
 
-        const intro2 = this.add.text(w / 2, h / 2 - 38, '"BRB babe, gonna grab us some towels!"', {
+        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Back in a sec — grabbing more firewood!"', {
             fontSize: '23px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
 
-        // After 2s, Patrick walks off
+        // After 2s, Tony walks off
         this.time.delayedCall(2200, () => {
             this.tweens.add({
                 targets: patrickSprite,
@@ -120,14 +120,14 @@ class ShooScene extends Phaser.Scene {
                 alpha: 0, duration: 400
             });
 
-            // Girls notice Patrick's muscles
+            // Raccoons smell the picnic food
             this.time.delayedCall(900, () => {
                 const warn1 = this.add.text(w / 2, h / 2 - 55, 'Oh no!!', {
                     fontSize: '31px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FF4444', stroke: '#000000', strokeThickness: 5
                 }).setOrigin(0.5).setDepth(200);
 
-                const warn2 = this.add.text(w / 2, h / 2 - 15, "The girls on the pool deck spotted\nPatrick's big muscles! 💪", {
+                const warn2 = this.add.text(w / 2, h / 2 - 15, "The raccoons smell the picnic\nand are raiding the food! 🦝", {
                     fontSize: '19px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FFD700', stroke: '#000000', strokeThickness: 4,
                     align: 'center'
@@ -159,15 +159,15 @@ class ShooScene extends Phaser.Scene {
     createUI() {
         const w = 800;
 
-        // Jealousy meter
-        const jLabel = this.add.text(20, 20, 'Jealousy:', {
+        // Chaos meter
+        const jLabel = this.add.text(20, 20, 'Chaos:', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
-            color: '#FF69B4', stroke: '#000000', strokeThickness: 2
+            color: '#2E8B7F', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0, 0.5).setDepth(100);
 
         const barX = jLabel.x + jLabel.width + 10;
         this.jealousyBg = this.add.rectangle(barX, 20, 104, 14, 0x333333).setOrigin(0, 0.5).setDepth(99);
-        this.jealousyBar = this.add.rectangle(barX + 2, 20, 0, 10, 0xFF69B4).setOrigin(0, 0.5).setDepth(100);
+        this.jealousyBar = this.add.rectangle(barX + 2, 20, 0, 10, 0x2E8B7F).setOrigin(0, 0.5).setDepth(100);
 
         // Wave counter
         this.waveText = this.add.text(w - 20, 12, 'Wave: 0/' + this.totalWaves, {
@@ -200,9 +200,9 @@ class ShooScene extends Phaser.Scene {
         const girlCount = Math.min(2 + this.wave, 6);
         this.girlSpeed = 35 + this.wave * 8;
 
-        const waveText = this.add.text(400, 200, '\u{1F49C} Wave ' + this.wave + '! \u{1F49C}', {
+        const waveText = this.add.text(400, 200, '\u{1F99D} Wave ' + this.wave + '! \u{1F99D}', {
             fontSize: '27px', fontFamily: 'Arial Black, Arial, sans-serif',
-            color: '#FF69B4', stroke: '#000000', strokeThickness: 4
+            color: '#2E8B7F', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(150);
         this.tweens.add({
             targets: waveText, alpha: 0, y: 180,
@@ -230,7 +230,7 @@ class ShooScene extends Phaser.Scene {
             color: '#FF0000', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(200);
 
-        const warn2 = this.add.text(400, 180, 'THE WHOLE SHIP IS COMING!!', {
+        const warn2 = this.add.text(400, 180, 'THE WHOLE FOREST IS COMING!!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
@@ -245,7 +245,7 @@ class ShooScene extends Phaser.Scene {
             onComplete: () => { warn1.destroy(); warn2.destroy(); }
         });
 
-        // Spawn 12 girls in rapid succession from both sides
+        // Spawn 12 raccoons in rapid succession from both sides
         const bossCount = 12;
         for (let i = 0; i < bossCount; i++) {
             this.time.delayedCall(2200 + i * 350, () => {
@@ -267,12 +267,12 @@ class ShooScene extends Phaser.Scene {
         const girl = this.add.image(x, yVariation, 'approach_girl').setDepth(6);
         girl.setFlipX(!fromLeft);
 
-        // Speed varies per girl
+        // Speed varies per raccoon
         const speed = this.girlSpeed + Phaser.Math.Between(-8, 12);
         const dir = fromLeft ? 1 : -1;
 
-        // Thought bubble
-        const thought = this.add.text(x, yVariation - 35, '❤️', {
+        // Thought bubble (raccoon eyeing the food)
+        const thought = this.add.text(x, yVariation - 35, '🍗', {
             fontSize: '21px'
         }).setOrigin(0.5).setDepth(7);
         this.tweens.add({
@@ -297,8 +297,8 @@ class ShooScene extends Phaser.Scene {
 
         const girl = girlObj.sprite;
 
-        // Jennifer says "SHOO!"
-        const shooTexts = ['SHOO! \u{1F44B}', 'BACK OFF! \u{1F624}', 'HE\'S MINE! \u{1F48D}', 'BYE! \u{1F44B}', 'GIRL, NO! \u{1F645}', 'EXCUSE ME?! \u{1F612}'];
+        // Brenda says "SHOO!"
+        const shooTexts = ['SHOO! \u{1F44B}', 'SCRAM! \u{1F624}', 'NOT THE FOOD! \u{1F357}', 'BYE! \u{1F44B}', 'GO ON, GIT! \u{1F645}', 'OH NO YOU DON\'T! \u{1F612}'];
         const shoo = this.add.text(this.jennifer.x, this.jennifer.y - 30,
             shooTexts[Phaser.Math.Between(0, shooTexts.length - 1)], {
                 fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
@@ -351,16 +351,16 @@ class ShooScene extends Phaser.Scene {
 
         const girl = girlObj.sprite;
 
-        // Girl flirts
-        const flirt = this.add.text(girl.x, girl.y - 30, 'xo', { fontSize: '21px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#FF69B4', stroke: '#000000', strokeThickness: 2 })
+        // Raccoon grabs a snack
+        const flirt = this.add.text(girl.x, girl.y - 30, 'nom!', { fontSize: '21px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#2E8B7F', stroke: '#000000', strokeThickness: 2 })
             .setOrigin(0.5).setDepth(50);
         this.tweens.add({
             targets: flirt, y: flirt.y - 20, alpha: 0,
             duration: 700, onComplete: () => flirt.destroy()
         });
 
-        // Jennifer gets angry
-        const angry = this.add.text(this.jennifer.x, this.jennifer.y - 25, 'GRR!', { fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#FF4444', stroke: '#000000', strokeThickness: 2 })
+        // Brenda groans at the mess
+        const angry = this.add.text(this.jennifer.x, this.jennifer.y - 25, 'UGH!', { fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#FF4444', stroke: '#000000', strokeThickness: 2 })
             .setOrigin(0.5).setDepth(50);
         this.tweens.add({
             targets: angry, y: angry.y - 20, alpha: 0,
@@ -404,7 +404,7 @@ class ShooScene extends Phaser.Scene {
 
         this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.6).setDepth(200);
 
-        this.add.text(w / 2, h / 2 - 20, 'Too much jealousy! Try again!', {
+        this.add.text(w / 2, h / 2 - 20, 'Too much chaos! Try again!', {
             fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF4444', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(201);
@@ -426,7 +426,7 @@ class ShooScene extends Phaser.Scene {
         this.stopMusic();
         const w = 800, h = 450;
 
-        // Clear remaining girls
+        // Clear remaining raccoons
         this.girls.forEach(g => {
             if (g.sprite && g.sprite.active) g.sprite.destroy();
             if (g.thought && g.thought.active) g.thought.destroy();
@@ -434,7 +434,7 @@ class ShooScene extends Phaser.Scene {
         this.girls = [];
 
         const text = this.add.text(w / 2, h / 2 - 25,
-            'He\'s all yours, Jennifer!\nShooed ' + this.shooCount + ' girls away!', {
+            'Picnic saved, Brenda!\nShooed ' + this.shooCount + ' raccoons away!', {
                 fontSize: '27px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFD700', stroke: '#000000', strokeThickness: 4,
                 align: 'center', lineSpacing: 8
@@ -446,12 +446,12 @@ class ShooScene extends Phaser.Scene {
             duration: 600, ease: 'Back.easeOut'
         });
 
-        // Heart shower
+        // Confetti / leaf shower
         this.time.addEvent({
             delay: 60, repeat: 40, callback: () => {
                 const heart = this.add.text(
                     Phaser.Math.Between(50, w - 50), -15,
-                    ['❤️', '❤️', '❤️', '❤️'][Phaser.Math.Between(0, 3)],
+                    ['🍃', '🎉', '🌲', '⭐'][Phaser.Math.Between(0, 3)],
                     { fontSize: '24px' }
                 ).setDepth(160);
                 this.tweens.add({
@@ -463,12 +463,12 @@ class ShooScene extends Phaser.Scene {
             }
         });
 
-        // Jennifer runs to boyfriend, couple moment
+        // Brenda joins Tony back at camp, happy moment
         this.tweens.add({
             targets: this.jennifer,
             x: this.boyfriend.x - 25, duration: 800, ease: 'Power2',
             onComplete: () => {
-                const coupleHeart = this.add.text(this.boyfriend.x - 10, this.boyfriend.y - 50, '❤️', {
+                const coupleHeart = this.add.text(this.boyfriend.x - 10, this.boyfriend.y - 50, '🎉', {
                     fontSize: '26px'
                 }).setOrigin(0.5).setDepth(20);
                 this.tweens.add({
@@ -482,16 +482,16 @@ class ShooScene extends Phaser.Scene {
         this.playVictoryJingle();
 
         this.time.delayedCall(4000, () => {
-            // Night club transition
+            // Campfire transition
             const overlay2 = this.add.rectangle(400, 225, 800, 450, 0x000000, 0.85)
                 .setDepth(300).setAlpha(0);
-            const clubText1 = this.add.text(400, 180, "Time to celebrate Jennifer's birthday...", {
+            const clubText1 = this.add.text(400, 180, "Time to celebrate Brenda's birthday...", {
                 fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFFFFF', stroke: '#000000', strokeThickness: 4
             }).setOrigin(0.5).setDepth(301).setAlpha(0);
-            const clubText2 = this.add.text(400, 225, '🎵 AT THE NIGHT CLUB! 🎵', {
+            const clubText2 = this.add.text(400, 225, '🎵 TO THE CAMPFIRE! 🎵', {
                 fontSize: '29px', fontFamily: 'Arial Black, Arial, sans-serif',
-                color: '#FF00FF', stroke: '#000000', strokeThickness: 5
+                color: '#2E8B7F', stroke: '#000000', strokeThickness: 5
             }).setOrigin(0.5).setDepth(301).setAlpha(0);
 
             this.tweens.add({

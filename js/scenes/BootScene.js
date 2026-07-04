@@ -16,7 +16,7 @@ class BootScene extends Phaser.Scene {
             color: '#FFD700'
         }).setOrigin(0.5);
 
-        const subText = this.add.text(w / 2, h / 2 + 10, 'Preparing the cruise ship...', {
+        const subText = this.add.text(w / 2, h / 2 + 10, 'Packing up the RV...', {
             fontSize: '21px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#87CEEB'

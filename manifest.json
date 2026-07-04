@@ -1,9 +1,9 @@
 {
-    "name": "Jennifer's Cruise Adventure",
-    "short_name": "Cruise Game",
+    "name": "Brenda's Camping Adventure",
+    "short_name": "Camping Game",
     "start_url": "./index.html",
     "display": "fullscreen",
     "orientation": "landscape",
     "background_color": "#87CEEB",
-    "theme_color": "#FF69B4"
+    "theme_color": "#2E8B7F"
 }

@@ -1,4 +1,4 @@
-// WakeUpScene.js — Jennifer and Patrick wake up and realize they're late for the cruise!
+// WakeUpScene.js — Brenda and Tony wake up and realize they're late to hit the road for the big camping trip!
 class WakeUpScene extends Phaser.Scene {
     constructor() {
         super({ key: 'WakeUpScene' });
@@ -60,7 +60,7 @@ class WakeUpScene extends Phaser.Scene {
         this.add.ellipse(w / 2 - 50, h - 140, 50, 25, 0xF5F5F5).setDepth(1);
         this.add.ellipse(w / 2 + 50, h - 140, 50, 25, 0xF5F5F5).setDepth(1);
 
-        // Jennifer sleeping (just head on pillow)
+        // Brenda sleeping (just head on pillow)
         this.jenHead = this.add.circle(w / 2 - 50, h - 148, 12, 0xC68642).setDepth(3);
         // Hair
         this.add.circle(w / 2 - 50, h - 153, 13, 0x1a1a1a).setDepth(2);
@@ -73,9 +73,9 @@ class WakeUpScene extends Phaser.Scene {
             duration: 1000, yoyo: true, repeat: -1
         });
 
-        // Patrick sleeping
+        // Tony sleeping
         this.patHead = this.add.circle(w / 2 + 50, h - 148, 13, 0xD4956B).setDepth(3);
-        // Patrick's hair/buzz
+        // Tony's hair/buzz
         this.add.circle(w / 2 + 50, h - 152, 14, 0x3E2723).setDepth(2);
         // Zzz
         this.patZzz = this.add.text(w / 2 + 75, h - 175, 'z z z', {
@@ -86,7 +86,7 @@ class WakeUpScene extends Phaser.Scene {
             duration: 1200, yoyo: true, repeat: -1
         });
 
-        // Honey curled up at foot of bed
+        // Maggie curled up at foot of bed
         this.honeySprite = this.add.sprite(w / 2 + 80, h - 90, 'honey', 0).setScale(0.8).setDepth(3);
 
         // Fade in from black
@@ -149,7 +149,7 @@ class WakeUpScene extends Phaser.Scene {
             targets: lightOverlay, fillAlpha: 0.08, duration: 1000
         });
 
-        // Patrick sits up — "!"
+        // Tony sits up — "!"
         const exclaim1 = this.add.text(w / 2 + 50, h - 195, '!', {
             fontSize: '24px', fontFamily: 'Arial Black',
             color: '#FFD700', stroke: '#000000', strokeThickness: 3
@@ -162,12 +162,12 @@ class WakeUpScene extends Phaser.Scene {
         // Dialogue
         this.time.delayedCall(800, () => {
             exclaim1.destroy();
-            this.showDialogue("Patrick", "BABE! Wake up! What time is it?!", '#88CCFF', () => {
+            this.showDialogue("Tony", "BREN! Wake up! What time is it?!", '#88CCFF', () => {
                 this.clockText.setText('7:45');
-                this.showDialogue("Jennifer", "Oh no... it's 7:45!!", '#FF69B4', () => {
-                    this.showDialogue("Patrick", "THE CRUISE LEAVES AT 9!", '#88CCFF', () => {
-                        this.showDialogue("Jennifer", "WE'RE GONNA BE LATE!!", '#FF69B4', () => {
-                            this.showDialogue("Patrick", "Quick!! Get Honey, I'll start the Tesla!!", '#88CCFF', () => {
+                this.showDialogue("Brenda", "Oh no... it's 7:45!!", '#FF69B4', () => {
+                    this.showDialogue("Tony", "OUR CAMPSITE IS BOOKED FOR SUNSET!", '#88CCFF', () => {
+                        this.showDialogue("Brenda", "WE'RE GONNA BE LATE!!", '#FF69B4', () => {
+                            this.showDialogue("Tony", "Quick!! Get Maggie, I'll start the RV!!", '#88CCFF', () => {
                                 this.rushOut();
                             });
                         });
@@ -242,7 +242,7 @@ class WakeUpScene extends Phaser.Scene {
             duration: 400, ease: 'Back.easeOut'
         });
 
-        // Honey barks (bounces)
+        // Maggie barks (bounces)
         this.tweens.add({
             targets: this.honeySprite,
             y: this.honeySprite.y - 20, duration: 200,
@@ -259,7 +259,7 @@ class WakeUpScene extends Phaser.Scene {
                 targets: overlay, fillAlpha: 1, duration: 800
             });
 
-            const transText = this.add.text(w / 2, h / 2, '🚗 Racing to the port... 🚗', {
+            const transText = this.add.text(w / 2, h / 2, '🚐 Racing to the campground... 🚐', {
                 fontSize: '24px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFD700', stroke: '#000000', strokeThickness: 4
             }).setOrigin(0.5).setDepth(301).setAlpha(0);

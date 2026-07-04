@@ -1,4 +1,4 @@
-// TitleScene.js — Animated title screen with cruise ship, waves, and "Tap to Play"
+// TitleScene.js — Animated title screen with RV on the beach, waves, and "Tap to Play"
 class TitleScene extends Phaser.Scene {
     constructor() {
         super({ key: 'TitleScene' });
@@ -39,7 +39,7 @@ class TitleScene extends Phaser.Scene {
         this.createCruiseShip(w / 2, h - 110);
 
         // Title text
-        const titleShadow = this.add.text(w / 2 + 3, 63, "Jenny's\nFirst Cruise", {
+        const titleShadow = this.add.text(w / 2 + 3, 63, "Brenda's\nCamping Adventure", {
             fontSize: '40px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#000000',
@@ -47,7 +47,7 @@ class TitleScene extends Phaser.Scene {
             lineSpacing: 5
         }).setOrigin(0.5).setAlpha(0.3);
 
-        const title = this.add.text(w / 2, 60, "Jenny's\nFirst Cruise", {
+        const title = this.add.text(w / 2, 60, "Brenda's\nCamping Adventure", {
             fontSize: '40px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700',
@@ -118,7 +118,7 @@ class TitleScene extends Phaser.Scene {
         });
 
         // Credits text
-        this.add.text(w / 2, h - 15, 'Made with love for Jennifer', {
+        this.add.text(w / 2, h - 15, 'Made with love for Mom 💚', {
             fontSize: '16px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFB6C1',
@@ -144,14 +144,14 @@ class TitleScene extends Phaser.Scene {
         // === DEBUG: Scene select links (hidden by default, toggle with sun) ===
         const scenes = [
             ['WakeUp', 'WakeUpScene'],
-            ['Tesla', 'TeslaScene'],
-            ['Game', 'GameScene'],
-            ['Memory', 'MemoryScene'],
-            ['Shoo', 'ShooScene'],
-            ['Club', 'NightClubScene'],
-            ['Boss', 'BossScene'],
+            ['RV', 'TeslaScene'],
+            ['Camp', 'GameScene'],
+            ['Garden', 'MemoryScene'],
+            ['Raccoons', 'ShooScene'],
+            ['Campfire', 'NightClubScene'],
+            ['Storm', 'BossScene'],
             ['Victory', 'VictoryScene'],
-            ['Muster', 'MusterScene'],
+            ['Checkin', 'MusterScene'],
         ];
 
         const debugBg = this.add.rectangle(w / 2, h - 45, 420, 70, 0x000000, 0.7)

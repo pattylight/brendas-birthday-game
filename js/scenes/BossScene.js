@@ -1,4 +1,4 @@
-// BossScene.js - Chocolate Monster boss fight! Honey becomes the BARK BLASTER!
+// BossScene.js - Storm boss fight! Maggie becomes the BARK BLASTER!
 class BossScene extends Phaser.Scene {
     constructor() {
         super({ key: 'BossScene' });
@@ -55,7 +55,7 @@ class BossScene extends Phaser.Scene {
         this.jennifer = new Jennifer(this, 100, groundY - 40);
         this.jennifer.setDepth(10);
 
-        // Create Honey (will transform into gun)
+        // Create Maggie (will transform into bark blaster)
         this.honey = new Honey(this, 60, groundY - 40);
         this.honey.setDepth(9);
 
@@ -97,8 +97,8 @@ class BossScene extends Phaser.Scene {
         const w = this.cameras.main.width;
         const h = this.cameras.main.height;
 
-        // Honey senses danger!
-        const text1 = this.add.text(w / 2, h / 2 - 60, 'Honey senses danger...', {
+        // Maggie senses danger!
+        const text1 = this.add.text(w / 2, h / 2 - 60, 'Maggie senses danger...', {
             fontSize: '24px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700',
@@ -108,7 +108,7 @@ class BossScene extends Phaser.Scene {
 
         this.tweens.add({ targets: text1, alpha: 1, duration: 500 });
 
-        // Honey shakes and glows
+        // Maggie shakes and glows
         this.time.delayedCall(1200, () => {
             if (!this.honey || !this.honey.active) return;
             this.tweens.add({
@@ -152,15 +152,15 @@ class BossScene extends Phaser.Scene {
         this.time.delayedCall(2500, () => {
             text1.destroy();
 
-            // Hide Honey
+            // Hide Maggie
             this.honey.setVisible(false);
             this.honey.body.setEnable(false);
 
             // Show transformation text
-            const text2 = this.add.text(w / 2, h / 2 - 40, 'HONEY became the BARK BLASTER!', {
+            const text2 = this.add.text(w / 2, h / 2 - 40, 'MAGGIE became the BARK BLASTER!', {
                 fontSize: '22px',
                 fontFamily: 'Arial Black, Arial, sans-serif',
-                color: '#FF69B4',
+                color: '#2E8B7F',
                 stroke: '#000000',
                 strokeThickness: 4
             }).setOrigin(0.5).setDepth(200).setScale(0.5);
@@ -196,7 +196,7 @@ class BossScene extends Phaser.Scene {
         this.startBossMusic();
 
         // Warning
-        const warning = this.add.text(w / 2, h / 2 - 40, 'A CHOCOLATE MONSTER APPEARS!', {
+        const warning = this.add.text(w / 2, h / 2 - 40, 'A GIANT STORM ROLLS IN!', {
             fontSize: '27px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF4444',
@@ -223,7 +223,7 @@ class BossScene extends Phaser.Scene {
             }
         });
 
-        // Create the chocolate boss
+        // Create the storm boss
         this.boss = new ChocolateBoss(this, w / 2, -50);
         this.boss.setDepth(8);
         this.physics.add.collider(this.boss, this.platforms);
@@ -232,7 +232,7 @@ class BossScene extends Phaser.Scene {
         // Health bar
         this.createHealthBar();
 
-        // Collision: chocolate boss touches Jennifer
+        // Collision: storm boss touches Brenda
         this.physics.add.overlap(this.jennifer, this.boss, (jennifer, boss) => {
             try {
                 if (!boss || !boss.active || boss.isDead || boss.isInvulnerable || boss.isEntering || this.bossIsDead) return;
@@ -240,7 +240,7 @@ class BossScene extends Phaser.Scene {
             } catch(e) { console.warn('Boss touch error:', e); }
         });
 
-        // Collision: chocolate balls hit Jennifer
+        // Collision: hailstones hit Brenda
         this.physics.add.overlap(this.jennifer, this.boss.chocoBalls, (jennifer, ball) => {
             try {
                 if (!ball || !ball.active) return;
@@ -332,7 +332,7 @@ class BossScene extends Phaser.Scene {
             .setScrollFactor(0).setDepth(99).setFillStyle(0x000000, 0).setStrokeStyle(2, 0xFFFFFF);
         this.hpBar = this.add.rectangle(w / 2, 30, 200, 14, 0x8B4513)
             .setScrollFactor(0).setDepth(101);
-        this.add.text(w / 2, 12, 'CHOCOLATE MONSTER', {
+        this.add.text(w / 2, 12, 'THE STORM', {
             fontSize: '18px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF',
@@ -362,7 +362,7 @@ class BossScene extends Phaser.Scene {
         const defeatText = this.add.text(
             this.cameras.main.width / 2,
             this.cameras.main.height / 2 - 20,
-            '** MELTED! **',
+            '** CLEARED! **',
             {
                 fontSize: '38px',
                 fontFamily: 'Arial Black, Arial, sans-serif',
@@ -387,7 +387,7 @@ class BossScene extends Phaser.Scene {
             duration: 500
         });
 
-        // Honey transforms back!
+        // Maggie transforms back!
         this.time.delayedCall(1000, () => {
             if (this.gunSprite) this.gunSprite.destroy();
             this.gunSprite = null;
@@ -621,7 +621,7 @@ class BossScene extends Phaser.Scene {
                 const h = this.cameras.main.height;
                 this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.7)
                     .setScrollFactor(0).setDepth(400);
-                this.add.text(w / 2, h / 2 - 20, 'DEFEATED BY CHOCOLATE!', {
+                this.add.text(w / 2, h / 2 - 20, 'WASHED OUT! Try again!', {
                     fontSize: '28px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FF4444', stroke: '#000000', strokeThickness: 5
                 }).setOrigin(0.5).setScrollFactor(0).setDepth(401);

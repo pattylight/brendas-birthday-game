@@ -1,4 +1,4 @@
-// MusterScene.js - The captain asks Jennifer for her muster station number. She never remembers it.
+// MusterScene.js - The park ranger asks Brenda for her campsite number. She never remembers it.
 class MusterScene extends Phaser.Scene {
     constructor() {
         super({ key: 'MusterScene' });
@@ -8,7 +8,7 @@ class MusterScene extends Phaser.Scene {
         const w = 800, h = 450;
         this.events.on('shutdown', () => this.cleanup());
 
-        // === CRUISE SHIP CORRIDOR BACKGROUND ===
+        // === CAMPGROUND CHECK-IN BACKGROUND ===
         // Walls
         this.add.rectangle(w / 2, h / 2 - 40, w, 280, 0xF5F0E0).setDepth(-5);
         // Floor
@@ -28,9 +28,9 @@ class MusterScene extends Phaser.Scene {
             this.add.rectangle(x, 200, 44, 104, 0x8B6238).setDepth(-4);
             this.add.text(x, 165, '[=]', { fontSize: '18px' }).setOrigin(0.5).setDepth(-3);
         }
-        // "MUSTER STATIONS" sign on wall
+        // "CAMPSITE CHECK-IN" sign on wall
         this.add.rectangle(w / 2, 95, 220, 28, 0xCC0000).setDepth(-2);
-        this.add.text(w / 2, 95, '!! MUSTER STATIONS !!', {
+        this.add.text(w / 2, 95, '!! CAMPSITE CHECK-IN !!', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#880000', strokeThickness: 2
         }).setOrigin(0.5).setDepth(-1);
@@ -38,7 +38,7 @@ class MusterScene extends Phaser.Scene {
         // Safety poster
         this.add.rectangle(650, 180, 50, 60, 0xFFFFFF).setDepth(-3);
         this.add.text(650, 165, '[!]', { fontSize: '22px' }).setOrigin(0.5).setDepth(-2);
-        this.add.text(650, 185, 'KNOW\nYOUR\nSTATION!', {
+        this.add.text(650, 185, 'KNOW\nYOUR\nSITE!', {
             fontSize: '12px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#CC0000', align: 'center'
         }).setOrigin(0.5).setDepth(-2);
@@ -59,7 +59,7 @@ class MusterScene extends Phaser.Scene {
         const w = 800, h = 450;
         this.phase = 'captain_enters';
 
-        // Captain walks in from left
+        // Park ranger walks in from left
         this.captain = this.add.image(-40, h - 80, 'captain').setDepth(5).setScale(1.8);
 
         // Alarm sound
@@ -74,7 +74,7 @@ class MusterScene extends Phaser.Scene {
             duration: 400, yoyo: true, repeat: -1
         });
 
-        // Captain runs in
+        // Ranger runs in
         this.tweens.add({
             targets: this.captain,
             x: 250, duration: 1200, ease: 'Power2',
@@ -91,7 +91,7 @@ class MusterScene extends Phaser.Scene {
         this.phase = 'yelling';
         const w = 800, h = 450;
 
-        // Captain shakes with urgency
+        // Ranger shakes with urgency
         this.tweens.add({
             targets: this.captain,
             x: this.captain.x + 3, duration: 50, yoyo: true, repeat: 8
@@ -104,11 +104,11 @@ class MusterScene extends Phaser.Scene {
         // Bubble tail
         const tail = this.add.triangle(260, h - 148, 0, 0, 20, 0, 10, 15, 0xFFFFFF).setDepth(50);
 
-        // Captain's speech - typed out
+        // Ranger's speech - typed out
         const speeches = [
-            { text: '!! THE BOAT IS SINKING!!!', delay: 0, color: '#FF0000', size: '13px' },
+            { text: '!! CHECK-IN IS CLOSING!!!', delay: 0, color: '#FF0000', size: '13px' },
             { text: 'QUICK!!!', delay: 1200, color: '#FF0000', size: '15px' },
-            { text: 'What\'s your MUSTER STATION?!', delay: 2200, color: '#222222', size: '12px' },
+            { text: 'What\'s your CAMPSITE NUMBER?!', delay: 2200, color: '#222222', size: '12px' },
         ];
 
         this.speechTexts = [];
@@ -161,7 +161,7 @@ class MusterScene extends Phaser.Scene {
         const w = 800, h = 450;
 
         // Dramatic prompt
-        this.promptText = this.add.text(w / 2, 140, '!! ENTER YOUR MUSTER STATION NUMBER !!', {
+        this.promptText = this.add.text(w / 2, 140, '!! ENTER YOUR CAMPSITE NUMBER !!', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF0000', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(100);
@@ -223,7 +223,7 @@ class MusterScene extends Phaser.Scene {
         // Input box styled like a ship terminal
         this.inputElement = document.createElement('input');
         this.inputElement.type = 'text';
-        this.inputElement.placeholder = 'Type muster station #...';
+        this.inputElement.placeholder = 'Type campsite #...';
         this.inputElement.maxLength = 20;
         this.inputElement.style.cssText = `
             font-family: 'Courier New', monospace;
@@ -334,7 +334,7 @@ class MusterScene extends Phaser.Scene {
 
         // Subtitle
         this.time.delayedCall(800, () => {
-            const subText = this.add.text(w / 2, h / 2 + 5, 'THE SHIP IS SINKING!!!', {
+            const subText = this.add.text(w / 2, h / 2 + 5, "YOU'LL LOSE YOUR SPOT!!!", {
                 fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFD700', stroke: '#000000', strokeThickness: 5
             }).setOrigin(0.5).setDepth(300);
@@ -345,7 +345,7 @@ class MusterScene extends Phaser.Scene {
             });
         });
 
-        // Captain facepalms
+        // Ranger facepalms
         this.time.delayedCall(600, () => {
             const facepalm = this.add.text(this.captain.x, this.captain.y - 50, '*sigh*', {
                 fontSize: '34px'
@@ -356,7 +356,7 @@ class MusterScene extends Phaser.Scene {
             });
         });
 
-        // Jennifer confused/embarrassed
+        // Brenda confused/embarrassed
         this.time.delayedCall(400, () => {
             const oops = this.add.text(this.jennifer.x, this.jennifer.y - 50, 'oops...', {
                 fontSize: '21px', fontFamily: 'Arial Black, Arial, sans-serif',
@@ -411,9 +411,9 @@ class MusterScene extends Phaser.Scene {
         // Play sinking sound
         this.playSinkingSound();
 
-        // Funny "Classic Jennifer" text
+        // Funny "Classic Brenda" text
         this.time.delayedCall(2500, () => {
-            const classic = this.add.text(w / 2, h / 2 - 10, 'Classic Jennifer...', {
+            const classic = this.add.text(w / 2, h / 2 - 10, 'Classic Brenda...', {
                 fontSize: '29px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFFFFF', stroke: '#000000', strokeThickness: 5
             }).setOrigin(0.5).setDepth(300);

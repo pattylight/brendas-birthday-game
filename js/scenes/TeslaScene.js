@@ -1,4 +1,4 @@
-// TeslaScene.js — Jennifer takes her 2025 White Tesla Model Y for a drive!
+// TeslaScene.js — Brenda fires up the Class A RV for the road trip!
 class TeslaScene extends Phaser.Scene {
     constructor() {
         super({ key: 'TeslaScene' });
@@ -79,11 +79,11 @@ class TeslaScene extends Phaser.Scene {
             this.add.rectangle(x, this.roadBottom - 5, 10, 3, 0xDDDDDD, 0.25).setDepth(1);
         }
 
-        // === TESLA ===
+        // === THE RV ===
         this.tesla = this.add.image(140, this.laneY[1], 'tesla').setDepth(5);
 
-        // "Model Y" label
-        this.teslaLabel = this.add.text(140, this.laneY[1] + 26, 'MODEL Y', {
+        // "The RV" label
+        this.teslaLabel = this.add.text(140, this.laneY[1] + 26, 'THE RV', {
             fontSize: '13px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setDepth(7).setAlpha(0.6);
@@ -116,17 +116,17 @@ class TeslaScene extends Phaser.Scene {
         this.createUI();
 
         // === INTRO ===
-        const intro1 = this.add.text(w / 2, h / 2 - 55, 'Patrick & Jennifer are LATE!', {
+        const intro1 = this.add.text(w / 2, h / 2 - 55, 'Brenda & Tony are running late!', {
             fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF4444', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(200);
 
-        const intro2 = this.add.text(w / 2, h / 2 - 18, 'The cruise ship leaves in 10 minutes!', {
+        const intro2 = this.add.text(w / 2, h / 2 - 18, 'Their campsite is booked for sunset!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
 
-        const intro3 = this.add.text(w / 2, h / 2 + 15, 'Floor it, Jennifer!!', {
+        const intro3 = this.add.text(w / 2, h / 2 + 15, 'Hit the gas, Brenda!!', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setDepth(200);
@@ -206,7 +206,7 @@ class TeslaScene extends Phaser.Scene {
         this.progressBar = this.add.rectangle(w / 2 - 100, 14, 0, 10, 0x44FF44).setOrigin(0, 0.5).setDepth(100);
 
         // Destination label
-        this.add.text(w / 2 + 110, 14, 'PORT', { fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#FFFFFF', stroke: '#000000', strokeThickness: 2 }).setOrigin(0, 0.5).setDepth(100);
+        this.add.text(w / 2 + 110, 14, 'CAMP', { fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#FFFFFF', stroke: '#000000', strokeThickness: 2 }).setOrigin(0, 0.5).setDepth(100);
 
         this.distText = this.add.text(w / 2, 30, '0m / 6000m', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
@@ -242,7 +242,7 @@ class TeslaScene extends Phaser.Scene {
             this.obstacles.push(obs2);
         }
 
-        // Charge pickup when missing lives
+        // Health pickup when missing lives
         if (this.lives < 3 && Math.random() < 0.15) {
             const pLane = Phaser.Math.Between(0, 2);
             const pickup = this.add.text(w + 40, this.laneY[pLane], '+HP', { fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#44FF44', stroke: '#000000', strokeThickness: 2 })
@@ -263,7 +263,7 @@ class TeslaScene extends Phaser.Scene {
         // Slow down on crash
         this.speed = Math.max(200, this.speed * 0.4);
 
-        // Flash Tesla
+        // Flash the RV
         this.tweens.add({
             targets: [this.tesla],
             alpha: 0.3, duration: 100, yoyo: true, repeat: 5,
@@ -357,7 +357,7 @@ class TeslaScene extends Phaser.Scene {
 
         const w = 800, h = 450;
 
-        const text = this.add.text(w / 2, h / 2 - 10, 'We made it!!\nTime to board the cruise!', {
+        const text = this.add.text(w / 2, h / 2 - 10, 'We made it!!\nTime to set up camp!', {
             fontSize: '24px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4,
             align: 'center', lineSpacing: 8
@@ -470,7 +470,7 @@ class TeslaScene extends Phaser.Scene {
             if (p.active && p.x < -50) { p.destroy(); this.pickups.splice(i, 1); }
         }
 
-        // Tesla subtle bobbing
+        // RV subtle bobbing
         this.tesla.angle = Math.sin(time * 0.004) * 1.2;
     }
 

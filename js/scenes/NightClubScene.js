@@ -1,4 +1,4 @@
-// NightClubScene.js — Guitar Hero-style rhythm mini-game at the cruise ship night club!
+// NightClubScene.js — Guitar Hero-style rhythm mini-game: a campfire sing-along!
 class NightClubScene extends Phaser.Scene {
     constructor() {
         super({ key: 'NightClubScene' });
@@ -15,11 +15,11 @@ class NightClubScene extends Phaser.Scene {
             }
         });
 
-        // ========== NIGHT CLUB BACKGROUND ==========
-        // Dark dance floor
+        // ========== CAMPFIRE BACKGROUND ==========
+        // Dark night sky over the campsite
         this.add.rectangle(w / 2, h / 2, w, h, 0x0A0015).setDepth(-10);
 
-        // Shiny checkered dance floor
+        // Shiny checkered gathering area
         for (let y = h - 120; y < h; y += 30) {
             for (let x = 0; x < w; x += 30) {
                 const bright = ((Math.floor(x / 30) + Math.floor(y / 30)) % 2 === 0);
@@ -59,7 +59,7 @@ class NightClubScene extends Phaser.Scene {
         // Stage / DJ booth at back
         this.add.rectangle(w / 2, h - 150, 200, 60, 0x1A0033).setDepth(-5);
         this.add.rectangle(w / 2, h - 172, 180, 10, 0xFF00FF, 0.3).setDepth(-4);
-        this.add.text(w / 2, h - 155, 'DJ', {
+        this.add.text(w / 2, h - 155, '🔥', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setDepth(-3);
@@ -73,7 +73,7 @@ class NightClubScene extends Phaser.Scene {
         this.add.circle(w - 140, h - 140, 5, 0x111111).setDepth(-4);
 
         // Neon sign
-        this.neonText = this.add.text(w / 2, 70, '★ CLUB CRUISE ★', {
+        this.neonText = this.add.text(w / 2, 70, '★ CAMPFIRE JAM ★', {
             fontSize: '22px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#FF00FF', strokeThickness: 1
         }).setOrigin(0.5).setDepth(10).setAlpha(0.9);
@@ -235,12 +235,12 @@ class NightClubScene extends Phaser.Scene {
 
         const overlay = this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.85).setDepth(200);
 
-        const title = this.add.text(w / 2, h / 2 - 60, '🎵 CLUB CRUISE 🎵', {
+        const title = this.add.text(w / 2, h / 2 - 60, '🎵 CAMPFIRE JAM 🎵', {
             fontSize: '32px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(201);
 
-        const subtitle = this.add.text(w / 2, h / 2 - 15, "It's Jennifer's birthday party on the dance floor!", {
+        const subtitle = this.add.text(w / 2, h / 2 - 15, "It's Brenda's birthday sing-along by the bonfire!", {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setDepth(201);
@@ -620,7 +620,7 @@ class NightClubScene extends Phaser.Scene {
         else if (accuracy >= 50) { grade = 'C'; gradeColor = '#FFCC00'; }
         else { grade = 'D'; gradeColor = '#FF4444'; }
 
-        this.add.text(w / 2, h / 2 - 80, '🎵 DANCE COMPLETE! 🎵', {
+        this.add.text(w / 2, h / 2 - 80, '🎵 SING-ALONG COMPLETE! 🎵', {
             fontSize: '28px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FF00FF', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(201);
@@ -640,10 +640,10 @@ class NightClubScene extends Phaser.Scene {
             color: '#CCCCCC', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setDepth(201);
 
-        // Jennifer dancing celebration
+        // Brenda singing celebration
         const jenText = accuracy >= 70
-            ? "Jennifer tears up the dance floor! 💃"
-            : "Jennifer had fun dancing anyway! 😄";
+            ? "Brenda leads the whole campfire in song! 🎶"
+            : "Brenda had fun singing anyway! 😄";
         this.add.text(w / 2, h / 2 + 80, jenText, {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFB6C1', stroke: '#000000', strokeThickness: 2

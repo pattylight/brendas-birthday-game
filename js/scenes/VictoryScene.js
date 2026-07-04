@@ -1,4 +1,4 @@
-// VictoryScene.js - Birthday celebration with confetti, message, and Honey celebrating
+// VictoryScene.js - Birthday celebration with fireworks, confetti, message, and Maggie celebrating
 class VictoryScene extends Phaser.Scene {
     constructor() {
         super({ key: 'VictoryScene' });
@@ -35,10 +35,12 @@ class VictoryScene extends Phaser.Scene {
 
         // Confetti particle system
         this.createConfetti();
+        // July 5th fireworks bursting over the campground
+        this.createFireworks();
 
         // Main birthday text - scales in with bounce
-        const happyText = this.add.text(w / 2, 60, 'HAPPY 32nd', {
-            fontSize: '53px',
+        const happyText = this.add.text(w / 2, 40, 'HAPPY 61st', {
+            fontSize: '46px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700',
             stroke: '#8B4513',
@@ -46,17 +48,17 @@ class VictoryScene extends Phaser.Scene {
             align: 'center'
         }).setOrigin(0.5).setScale(0).setDepth(10);
 
-        const birthdayText = this.add.text(w / 2, 115, 'BIRTHDAY!', {
-            fontSize: '53px',
+        const birthdayText = this.add.text(w / 2, 82, 'BIRTHDAY!', {
+            fontSize: '46px',
             fontFamily: 'Arial Black, Arial, sans-serif',
-            color: '#FF69B4',
-            stroke: '#8B0045',
+            color: '#F4A259',
+            stroke: '#7a3e10',
             strokeThickness: 6,
             align: 'center'
         }).setOrigin(0.5).setScale(0).setDepth(10);
 
-        const nameText = this.add.text(w / 2, 170, '~ JENNIFER ~', {
-            fontSize: '40px',
+        const nameText = this.add.text(w / 2, 120, '~ BRENDA ~', {
+            fontSize: '30px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF',
             stroke: '#000000',
@@ -89,8 +91,8 @@ class VictoryScene extends Phaser.Scene {
             ease: 'Back.easeOut'
         });
 
-        // Espresso martini icon
-        const cake = this.add.image(w / 2, 210, 'martini').setScale(2.5).setAlpha(0).setDepth(10);
+        // Birthday treat (s'more) icon
+        const cake = this.add.image(w / 2, 152, 'martini').setScale(1.5).setAlpha(0).setDepth(10);
 
         this.tweens.add({
             targets: cake,
@@ -102,10 +104,10 @@ class VictoryScene extends Phaser.Scene {
             ease: 'Back.easeOut'
         });
 
-        // Bouncing cake
+        // Bouncing treat
         this.tweens.add({
             targets: cake,
-            y: 205,
+            y: 148,
             duration: 1000,
             delay: 2600,
             yoyo: true,
@@ -162,23 +164,23 @@ class VictoryScene extends Phaser.Scene {
         });
 
         // Dark panel behind message for readability
-        this.msgBg = this.add.rectangle(w / 2, 290, w * 0.85, 100, 0x000000, 0.5)
+        this.msgBg = this.add.rectangle(w / 2, 262, w * 0.88, 100, 0x000000, 0.55)
             .setOrigin(0.5).setDepth(9).setAlpha(0);
 
         // Personal message (appears after delay)
-        const message = this.add.text(w / 2, 275, '', {
-            fontSize: '24px',
+        const message = this.add.text(w / 2, 262, '', {
+            fontSize: '17px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF',
             align: 'center',
-            wordWrap: { width: w * 0.8 },
-            lineSpacing: 6,
+            wordWrap: { width: w * 0.84 },
+            lineSpacing: 3,
             stroke: '#000000',
             strokeThickness: 3
         }).setOrigin(0.5).setDepth(10);
 
         // Type out the message character by character
-        const fullMessage = "You're the most amazing woman in the world.\nHere's to 32 incredible years of YOU!\nI love you more than all the espresso martinis\non every cruise ship in the world.\n\nLove, Patrick";
+        const fullMessage = "Happy 61st Birthday, Mom!\nThank you for a lifetime of love, adventures,\nand the best campfires under the stars.\nHere's to many more miles in the RV.\n\nLove Patrick, Tony, Kimberly,\nRylee, Declan & Maggie";
         let charIndex = 0;
 
         this.time.delayedCall(2500, () => {
@@ -285,6 +287,61 @@ class VictoryScene extends Phaser.Scene {
             },
             loop: true
         });
+    }
+
+    createFireworks() {
+        const w = this.cameras.main.width;
+        const h = this.cameras.main.height;
+        const palette = [0xFFD700, 0xFF6B6B, 0x4FC3F7, 0xF4A259, 0x9CCC65, 0xFF8AD8, 0xFFFFFF];
+
+        const burst = () => {
+            const bx = Phaser.Math.Between(w * 0.15, w * 0.85);
+            const by = Phaser.Math.Between(40, h * 0.5);
+            const color = palette[Phaser.Math.Between(0, palette.length - 1)];
+            const sparks = 18;
+
+            // Launch flash
+            const flash = this.add.circle(bx, by, 4, color, 1).setDepth(4);
+            this.tweens.add({ targets: flash, scale: 2, alpha: 0, duration: 250, onComplete: () => flash.destroy() });
+
+            // Radiating sparks
+            for (let i = 0; i < sparks; i++) {
+                const angle = (Math.PI * 2 * i) / sparks;
+                const dist = Phaser.Math.Between(40, 80);
+                const spark = this.add.circle(bx, by, Phaser.Math.Between(2, 3), color, 1).setDepth(4);
+                this.tweens.add({
+                    targets: spark,
+                    x: bx + Math.cos(angle) * dist,
+                    y: by + Math.sin(angle) * dist + 20, // slight gravity drop
+                    alpha: 0,
+                    duration: Phaser.Math.Between(700, 1100),
+                    ease: 'Quad.easeOut',
+                    onComplete: () => spark.destroy()
+                });
+            }
+
+            // Firework pop sound
+            try {
+                const audioCtx = this.sound.context;
+                if (audioCtx) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain); gain.connect(audioCtx.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(700, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.25);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                    osc.start(audioCtx.currentTime);
+                    osc.stop(audioCtx.currentTime + 0.3);
+                }
+            } catch (e) {}
+        };
+
+        this.time.addEvent({ delay: 750, callback: burst, loop: true });
+        // A couple of instant bursts so the sky isn't empty at the start
+        this.time.delayedCall(300, burst);
+        this.time.delayedCall(600, burst);
     }
 
     playCelebrationMusic() {

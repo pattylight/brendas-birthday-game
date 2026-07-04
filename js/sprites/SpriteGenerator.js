@@ -45,33 +45,34 @@ const SpriteGen = {
 
     // Color palette
     colors: {
-        skin: '#C68642',
-        skinDark: '#A0522D',
-        skinLight: '#D4956B',
-        hair: '#1a1a1a',
-        hairHighlight: '#2d1810',
-        sunglasses: '#1a1a1a',
-        sunglassesLens: '#3D2B1F',
+        // BRENDA — player recolor (uses same pixel layout as before)
+        skin: '#E7B98F',
+        skinDark: '#C68642',
+        skinLight: '#F3D3B0',
+        hair: '#B9BEC4',        // warm silver-gray hair
+        hairHighlight: '#D4D8DC',
+        sunglasses: '#2b2b2b',
+        sunglassesLens: '#3a5a6a',
         sunglassesShine: '#FFFACD',
-        dressTop: '#FF6B8A',
-        dressBottom: '#FF4571',
-        dressAccent: '#FFB6C1',
-        shoes: '#FFD700',
+        dressTop: '#2E8B7F',    // teal camping shirt
+        dressBottom: '#7A5A38', // khaki/hiking shorts
+        dressAccent: '#F4A259', // sunset-orange accent
+        shoes: '#5A3A22',       // hiking boots
         white: '#FFFFFF',
-        // Honey colors
-        pomFur: '#FF9933',
-        pomFurLight: '#FFBB66',
-        pomFurDark: '#CC7722',
-        pomNose: '#222222',
+        // MAGGIE — German Shepherd recolor (reuses "pom" keys)
+        pomFur: '#6E4A2A',      // dark brown ears/outline
+        pomFurLight: '#C88A3C', // tan body/face
+        pomFurDark: '#1c1c1c',  // black legs/paws/saddle
+        pomNose: '#161616',
         pomTongue: '#FF6B8A',
-        pomEye: '#221100',
-        // Martini colors
-        glass: '#FFFFFF',
-        glassShine: '#E8E8FF',
-        coffee: '#4A2C17',
+        pomEye: '#161006',
+        // S'more collectible colors (reuses "martini" draw keys)
+        glass: '#E8C98F',       // graham cracker
+        glassShine: '#F0DCB0',
+        coffee: '#4A2C17',       // chocolate
         coffeeLight: '#6B4226',
-        olive: '#8FBC8F',
-        foam: '#DEB887',
+        olive: '#FFF8E7',        // marshmallow
+        foam: '#FFFDF5',         // toasted marshmallow
         // Seagull colors
         feather: '#F5F5F5',
         featherGray: '#D3D3D3',
@@ -220,27 +221,31 @@ const SpriteGen = {
     },
 
     // ==========================================
-    // ESPRESSO MARTINI — Collectible (16x16)
+    // S'MORE — Campfire collectible (16x16)
     // ==========================================
     generateMartini() {
-        const c = this.colors;
         const _ = '.';
+        const g = '#C9923E';   // graham cracker
+        const G = '#A9752B';   // graham cracker edge
+        const s = '#3B2410';   // chocolate
+        const m = '#FFF7E6';   // marshmallow
+        const t = '#E8C98F';   // toasted marshmallow edge
 
         return [
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
-            [_,_,_,_,_,c.glass,c.glass,c.glass,c.glass,c.glass,c.glass,_,_,_,_,_],
-            [_,_,_,_,c.glass,c.foam,c.foam,c.foam,c.foam,c.foam,c.foam,c.glass,_,_,_,_],
-            [_,_,_,c.glass,c.coffee,c.coffee,c.coffeeLight,c.coffee,c.coffee,c.coffeeLight,c.coffee,c.coffee,c.glass,_,_,_],
-            [_,_,_,c.glass,c.coffee,c.coffeeLight,c.coffee,c.coffee,c.coffeeLight,c.coffee,c.coffee,c.coffee,c.glass,_,_,_],
-            [_,_,_,_,c.glass,c.coffee,c.coffee,c.coffee,c.coffee,c.coffee,c.coffee,c.glass,_,_,_,_],
-            [_,_,_,_,_,c.glass,c.coffee,c.coffee,c.coffee,c.coffee,c.glass,_,_,_,_,_],
-            [_,_,_,_,_,_,c.glass,c.coffee,c.coffee,c.glass,_,_,_,_,_,_],
-            [_,_,_,_,_,_,_,c.glass,c.glass,_,_,_,_,_,_,_],
-            [_,_,_,_,_,_,_,c.glass,c.glass,_,_,_,_,_,_,_],
-            [_,_,_,_,_,_,_,c.glass,c.glass,_,_,_,_,_,_,_],
-            [_,_,_,_,_,_,_,c.glass,c.glass,_,_,_,_,_,_,_],
-            [_,_,_,_,_,c.glass,c.glass,c.glass,c.glass,c.glass,c.glass,_,_,_,_,_],
-            [_,_,_,_,c.glass,c.glassShine,c.glassShine,c.glassShine,c.glassShine,c.glassShine,c.glassShine,c.glass,_,_,_,_],
+            [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+            [_,_,_,G,G,G,G,G,G,G,G,G,G,_,_,_],
+            [_,_,_,G,g,g,g,G,g,g,g,g,G,_,_,_],
+            [_,_,_,G,g,g,g,g,g,G,g,g,G,_,_,_],
+            [_,_,_,t,t,t,t,t,t,t,t,t,t,_,_,_],
+            [_,_,_,t,m,m,m,m,m,m,m,m,t,_,_,_],
+            [_,_,_,t,m,m,m,m,m,m,m,m,t,_,_,_],
+            [_,_,_,s,s,s,s,s,s,s,s,s,s,_,_,_],
+            [_,_,_,s,s,s,s,s,s,s,s,s,s,_,_,_],
+            [_,_,_,G,G,G,G,G,G,G,G,G,G,_,_,_],
+            [_,_,_,G,g,g,G,g,g,g,g,G,g,G,_,_],
+            [_,_,_,G,g,g,g,g,G,g,g,g,g,G,_,_],
+            [_,_,_,G,G,G,G,G,G,G,G,G,G,_,_,_],
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
         ];
@@ -307,7 +312,7 @@ const SpriteGen = {
     },
 
     // ==========================================
-    // CHOCOLATE BOSS — Giant chocolate monster (canvas drawn, 96x96)
+    // STORM BOSS — Giant angry thundercloud (canvas drawn, 96x96) — key 'chocolate_boss'
     // ==========================================
     generateChocolateBoss() {
         const canvas = document.createElement('canvas');
@@ -315,100 +320,62 @@ const SpriteGen = {
         canvas.height = 96;
         const ctx = canvas.getContext('2d');
 
-        // Main body - big chocolate blob
-        ctx.fillStyle = '#5C3317';
-        ctx.beginPath();
-        ctx.ellipse(48, 48, 40, 44, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Lighter chocolate layer
-        ctx.fillStyle = '#7B4B2A';
-        ctx.beginPath();
-        ctx.ellipse(48, 44, 34, 36, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Chocolate drips from bottom
-        ctx.fillStyle = '#5C3317';
-        [20, 32, 48, 64, 76].forEach((dx) => {
-            const dh = 8 + Math.sin(dx) * 6;
-            ctx.beginPath();
-            ctx.moveTo(dx - 4, 84);
-            ctx.quadraticCurveTo(dx, 84 + dh + 4, dx + 4, 84);
-            ctx.fill();
+        // Big billowing storm cloud — stack of dark puffs
+        const puffs = [
+            [30, 40, 22], [58, 40, 22], [44, 32, 24],
+            [18, 50, 16], [72, 50, 16], [48, 52, 26],
+        ];
+        ctx.fillStyle = '#4A5568';
+        puffs.forEach(([x, y, r]) => { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); });
+        // Lighter top highlight
+        ctx.fillStyle = '#647089';
+        [[36, 28, 14], [56, 28, 14], [46, 24, 12]].forEach(([x, y, r]) => {
+            ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
         });
-
-        // Shiny chocolate highlight
-        ctx.fillStyle = '#A0673D';
+        // Dark underbelly
+        ctx.fillStyle = '#39414F';
         ctx.beginPath();
-        ctx.ellipse(38, 34, 12, 8, -0.3, 0, Math.PI * 2);
+        ctx.ellipse(48, 62, 40, 14, 0, 0, Math.PI);
         ctx.fill();
 
-        // Eyes - big angry white circles
+        // Angry glowing eyes
         ctx.fillStyle = '#FFFFFF';
-        ctx.beginPath();
-        ctx.ellipse(34, 38, 10, 9, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(62, 38, 10, 9, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Angry eyebrow ridges
-        ctx.fillStyle = '#3E1F0D';
-        ctx.save();
-        ctx.translate(34, 30);
-        ctx.rotate(-0.25);
-        ctx.fillRect(-12, -2, 14, 4);
-        ctx.restore();
-        ctx.save();
-        ctx.translate(62, 30);
-        ctx.rotate(0.25);
-        ctx.fillRect(-2, -2, 14, 4);
-        ctx.restore();
-
-        // Pupils - red/orange
-        ctx.fillStyle = '#CC0000';
-        ctx.beginPath();
-        ctx.arc(36, 39, 5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(60, 39, 5, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Inner pupil black
+        ctx.beginPath(); ctx.ellipse(36, 42, 9, 8, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(60, 42, 9, 8, 0, 0, Math.PI * 2); ctx.fill();
+        // Angry brows
+        ctx.fillStyle = '#2b3340';
+        ctx.save(); ctx.translate(36, 34); ctx.rotate(0.3); ctx.fillRect(-11, -2, 15, 5); ctx.restore();
+        ctx.save(); ctx.translate(60, 34); ctx.rotate(-0.3); ctx.fillRect(-4, -2, 15, 5); ctx.restore();
+        // Electric-blue pupils
+        ctx.fillStyle = '#4FC3F7';
+        ctx.beginPath(); ctx.arc(37, 43, 4.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(59, 43, 4.5, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(37, 39, 2.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(61, 39, 2.5, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(38, 43, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(60, 43, 2, 0, Math.PI * 2); ctx.fill();
 
-        // Mouth - wide angry grin
-        ctx.fillStyle = '#2C1205';
+        // Grumbling mouth
+        ctx.strokeStyle = '#2b3340';
+        ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.ellipse(48, 60, 18, 10, 0, 0, Math.PI);
-        ctx.fill();
+        ctx.moveTo(38, 58); ctx.quadraticCurveTo(48, 52, 58, 58);
+        ctx.stroke();
 
-        // Chocolate teeth
-        ctx.fillStyle = '#D2691E';
-        for (let i = 0; i < 6; i++) {
-            ctx.fillRect(33 + i * 5.5, 60, 3, 5);
-        }
-
-        // Arms - chocolate blobs on sides
-        ctx.fillStyle = '#5C3317';
-        ctx.beginPath();
-        ctx.ellipse(10, 52, 12, 8, -0.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(86, 52, 12, 8, 0.5, 0, Math.PI * 2);
-        ctx.fill();
+        // Lightning bolts crackling below
+        ctx.fillStyle = '#FFE44D';
+        const bolt = (ox) => {
+            ctx.beginPath();
+            ctx.moveTo(ox, 66); ctx.lineTo(ox - 6, 80); ctx.lineTo(ox - 1, 80);
+            ctx.lineTo(ox - 6, 94); ctx.lineTo(ox + 8, 76); ctx.lineTo(ox + 2, 76);
+            ctx.lineTo(ox + 7, 66); ctx.closePath(); ctx.fill();
+        };
+        bolt(30); bolt(66);
 
         return canvas;
     },
 
     // ==========================================
-    // CREEPY MAN — Small enemy (canvas drawn, 32x48)
+    // RACCOON — Campsite critter enemy (canvas drawn, 32x48) — key 'creepy_man'
     // ==========================================
     generateCreepyMan() {
         const canvas = document.createElement('canvas');
@@ -416,78 +383,80 @@ const SpriteGen = {
         canvas.height = 48;
         const ctx = canvas.getContext('2d');
 
-        // Body (overweight, Hawaiian shirt)
-        ctx.fillStyle = '#FF6347'; // loud red Hawaiian shirt
+        const fur = '#8A8F98';
+        const furDark = '#5D636C';
+        const cream = '#D8DBE0';
+
+        // Bushy ringed tail (behind body, left side)
+        ctx.fillStyle = furDark;
+        ctx.beginPath(); ctx.ellipse(4, 30, 5, 8, -0.4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = fur;
+        ctx.fillRect(2, 24, 4, 2);
+        ctx.fillStyle = furDark;
+        ctx.fillRect(2, 28, 4, 2);
+        ctx.fillStyle = fur;
+        ctx.fillRect(2, 32, 4, 2);
+
+        // Body (round gray raccoon)
+        ctx.fillStyle = fur;
         ctx.beginPath();
-        ctx.ellipse(16, 26, 11, 11, 0, 0, Math.PI * 2);
+        ctx.ellipse(16, 30, 11, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        // Cream belly
+        ctx.fillStyle = cream;
+        ctx.beginPath();
+        ctx.ellipse(16, 32, 6, 8, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Shirt pattern (flowers)
-        ctx.fillStyle = '#FFFF00';
-        ctx.beginPath(); ctx.arc(12, 24, 2, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(20, 28, 2, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(16, 22, 1.5, 0, Math.PI * 2); ctx.fill();
-
-        // Head (bald, round)
-        ctx.fillStyle = '#FFCCAA'; // skin
+        // Head
+        ctx.fillStyle = fur;
         ctx.beginPath();
-        ctx.arc(16, 10, 8, 0, Math.PI * 2);
+        ctx.arc(16, 12, 9, 0, Math.PI * 2);
         ctx.fill();
 
-        // Bald shine
-        ctx.fillStyle = 'rgba(255,255,255,0.3)';
+        // Ears
+        ctx.fillStyle = fur;
+        ctx.beginPath(); ctx.moveTo(8, 6); ctx.lineTo(6, 0); ctx.lineTo(13, 5); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(24, 6); ctx.lineTo(26, 0); ctx.lineTo(19, 5); ctx.fill();
+        ctx.fillStyle = furDark;
+        ctx.beginPath(); ctx.moveTo(9, 5); ctx.lineTo(8, 2); ctx.lineTo(12, 5); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(23, 5); ctx.lineTo(24, 2); ctx.lineTo(20, 5); ctx.fill();
+
+        // Cream face + snout
+        ctx.fillStyle = cream;
+        ctx.beginPath(); ctx.arc(16, 15, 6, 0, Math.PI * 2); ctx.fill();
+
+        // Signature black bandit mask
+        ctx.fillStyle = '#2b2b2b';
         ctx.beginPath();
-        ctx.arc(14, 6, 3, 0, Math.PI * 2);
+        ctx.moveTo(8, 11); ctx.lineTo(24, 11); ctx.lineTo(22, 16);
+        ctx.lineTo(18, 13); ctx.lineTo(14, 13); ctx.lineTo(10, 16); ctx.closePath();
         ctx.fill();
 
-        // Creepy eyes (beady)
+        // Eyes (bright, mischievous)
+        ctx.fillStyle = '#FFE44D';
+        ctx.beginPath(); ctx.arc(12, 13, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(20, 13, 2, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#000000';
-        ctx.beginPath(); ctx.arc(13, 10, 1.5, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(19, 10, 1.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(12, 13, 1, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(20, 13, 1, 0, Math.PI * 2); ctx.fill();
 
-        // Raised eyebrows (creepy)
-        ctx.strokeStyle = '#8B6914';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.moveTo(11, 7); ctx.lineTo(15, 8); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(21, 7); ctx.lineTo(17, 8); ctx.stroke();
+        // Nose + snout line
+        ctx.fillStyle = '#1a1a1a';
+        ctx.beginPath(); ctx.arc(16, 17, 1.6, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#7a7f88';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(16, 18); ctx.lineTo(16, 20); ctx.stroke();
 
-        // Creepy grin
-        ctx.strokeStyle = '#CC3333';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(16, 12, 4, 0.1, Math.PI - 0.1);
-        ctx.stroke();
+        // Little grabby paws reaching for food
+        ctx.fillStyle = furDark;
+        ctx.beginPath(); ctx.arc(6, 26, 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(26, 26, 2.5, 0, Math.PI * 2); ctx.fill();
 
-        // Stubble dots
-        ctx.fillStyle = '#999999';
-        for (let sx = 12; sx <= 20; sx += 2) {
-            ctx.fillRect(sx, 15, 1, 1);
-        }
-
-        // Arms reaching out (creepy)
-        ctx.strokeStyle = '#FFCCAA';
-        ctx.lineWidth = 3;
-        ctx.beginPath(); ctx.moveTo(5, 24); ctx.lineTo(0, 20); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(27, 24); ctx.lineTo(32, 20); ctx.stroke();
-
-        // Hands
-        ctx.fillStyle = '#FFCCAA';
-        ctx.beginPath(); ctx.arc(0, 20, 2, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(32, 20, 2, 0, Math.PI * 2); ctx.fill();
-
-        // Shorts
-        ctx.fillStyle = '#4444AA';
-        ctx.fillRect(8, 36, 16, 5);
-
-        // Legs
-        ctx.fillStyle = '#FFCCAA';
-        ctx.fillRect(10, 39, 4, 6);
-        ctx.fillRect(18, 39, 4, 6);
-
-        // Sandals
-        ctx.fillStyle = '#8B6914';
-        ctx.fillRect(9, 45, 6, 2);
-        ctx.fillRect(17, 45, 6, 2);
+        // Feet
+        ctx.fillStyle = furDark;
+        ctx.fillRect(10, 40, 5, 4);
+        ctx.fillRect(17, 40, 5, 4);
 
         return canvas;
     },
@@ -530,96 +499,75 @@ const SpriteGen = {
     },
 
     // ==========================================
-    // HONEY GUN — Pomeranian in gun form (canvas drawn, 40x24)
+    // MAGGIE BLASTER — German Shepherd in guardian form (canvas drawn, 40x24) — key 'honey_gun'
     // ==========================================
     generateHoneyGun() {
+        const tan = '#C88A3C';
+        const tanLight = '#E0B87A';
+        const blk = '#1c1c1c';
         const canvas = document.createElement('canvas');
         canvas.width = 40;
         canvas.height = 24;
         const ctx = canvas.getContext('2d');
 
-        // Gun body (Honey's fluffy body shape)
-        ctx.fillStyle = '#FF9933';
+        // Body (black saddle over tan)
+        ctx.fillStyle = tan;
         ctx.beginPath();
         ctx.ellipse(18, 13, 12, 9, 0, 0, Math.PI * 2);
         ctx.fill();
-
-        // Lighter belly fluff
-        ctx.fillStyle = '#FFBB66';
+        ctx.fillStyle = blk;
         ctx.beginPath();
-        ctx.ellipse(18, 15, 8, 5, 0, 0, Math.PI * 2);
+        ctx.ellipse(16, 10, 9, 5, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Head (front of gun)
-        ctx.fillStyle = '#FF9933';
+        // Head (front)
+        ctx.fillStyle = tan;
         ctx.beginPath();
-        ctx.arc(30, 10, 8, 0, Math.PI * 2);
+        ctx.arc(30, 11, 8, 0, Math.PI * 2);
+        ctx.fill();
+        // Lighter muzzle/cheeks
+        ctx.fillStyle = tanLight;
+        ctx.beginPath();
+        ctx.arc(32, 13, 5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Fluffy cheeks
-        ctx.fillStyle = '#FFBB66';
-        ctx.beginPath();
-        ctx.arc(31, 12, 5, 0, Math.PI * 2);
-        ctx.fill();
+        // Big pointy black-tipped ears
+        ctx.fillStyle = tan;
+        ctx.beginPath(); ctx.moveTo(25, 5); ctx.lineTo(23, -2); ctx.lineTo(29, 3); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(34, 5); ctx.lineTo(37, -2); ctx.lineTo(31, 3); ctx.fill();
+        ctx.fillStyle = blk;
+        ctx.beginPath(); ctx.moveTo(24.5, 2); ctx.lineTo(23.5, -1); ctx.lineTo(27, 2); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(35, 2); ctx.lineTo(36, -1); ctx.lineTo(32.5, 2); ctx.fill();
 
-        // Pointy ears on top
-        ctx.fillStyle = '#FF9933';
-        ctx.beginPath();
-        ctx.moveTo(26, 5); ctx.lineTo(24, 0); ctx.lineTo(28, 3); ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(33, 5); ctx.lineTo(35, 0); ctx.lineTo(31, 3); ctx.fill();
-
-        // Inner ears
-        ctx.fillStyle = '#FFBB66';
-        ctx.beginPath();
-        ctx.moveTo(26, 4); ctx.lineTo(25, 1); ctx.lineTo(27, 3); ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(33, 4); ctx.lineTo(34, 1); ctx.lineTo(32, 3); ctx.fill();
-
-        // Eyes (determined look)
+        // Determined eyes
         ctx.fillStyle = '#221100';
-        ctx.beginPath(); ctx.arc(28, 9, 1.5, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(33, 9, 1.5, 0, Math.PI * 2); ctx.fill();
-
-        // Eye shine
+        ctx.beginPath(); ctx.arc(28, 9, 1.6, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(33, 9, 1.6, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#FFFFFF';
         ctx.beginPath(); ctx.arc(28.5, 8.5, 0.5, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(33.5, 8.5, 0.5, 0, Math.PI * 2); ctx.fill();
-
-        // Angry/determined eyebrows
-        ctx.strokeStyle = '#CC7722';
+        ctx.strokeStyle = '#8a5a24';
         ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(26, 7); ctx.lineTo(29, 7.5); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(36, 7); ctx.lineTo(32, 7.5); ctx.stroke();
 
-        // Nose
-        ctx.fillStyle = '#222222';
-        ctx.beginPath(); ctx.arc(30.5, 12, 1.5, 0, Math.PI * 2); ctx.fill();
+        // Black nose
+        ctx.fillStyle = blk;
+        ctx.beginPath(); ctx.arc(31, 13, 2, 0, Math.PI * 2); ctx.fill();
 
-        // Barrel (snout extending into gun barrel)
-        ctx.fillStyle = '#888888';
-        ctx.fillRect(36, 10, 4, 4);
-        ctx.fillStyle = '#666666';
-        ctx.fillRect(38, 10, 2, 4);
-        ctx.fillStyle = '#333333';
-        ctx.beginPath(); ctx.arc(40, 12, 2, 0, Math.PI * 2); ctx.fill();
+        // "Blast" muzzle (bark energy comes out here)
+        ctx.fillStyle = '#8fd0e0';
+        ctx.beginPath(); ctx.arc(39, 13, 2.5, 0, Math.PI * 2); ctx.fill();
 
-        // Handle/grip (tail curled as grip)
-        ctx.fillStyle = '#CC7722';
+        // Grip (curled tail)
+        ctx.fillStyle = blk;
         ctx.beginPath();
         ctx.moveTo(10, 14); ctx.lineTo(8, 22); ctx.lineTo(14, 22); ctx.lineTo(12, 14);
         ctx.fill();
-
-        // Tail fluff on grip
-        ctx.fillStyle = '#FF9933';
+        ctx.fillStyle = tan;
         ctx.beginPath();
         ctx.arc(11, 14, 4, 0, Math.PI * 2);
         ctx.fill();
-
-        // Paw detail on grip
-        ctx.fillStyle = '#CC7722';
-        ctx.beginPath(); ctx.arc(10, 21, 2, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(13, 21, 2, 0, Math.PI * 2); ctx.fill();
 
         return canvas;
     },
@@ -633,35 +581,29 @@ const SpriteGen = {
         canvas.height = 16;
         const ctx = canvas.getContext('2d');
 
-        // Orange energy ball (paw-shaped blast)
-        ctx.fillStyle = '#FF9933';
+        // Bark sound-wave blast (blue energy)
+        ctx.fillStyle = '#4FC3F7';
         ctx.beginPath();
         ctx.arc(8, 8, 6, 0, Math.PI * 2);
         ctx.fill();
 
         // Bright center
-        ctx.fillStyle = '#FFCC66';
+        ctx.fillStyle = '#E1F5FE';
         ctx.beginPath();
         ctx.arc(8, 8, 3, 0, Math.PI * 2);
         ctx.fill();
 
-        // Paw pad details
-        ctx.fillStyle = '#CC7722';
-        ctx.beginPath();
-        ctx.arc(6, 5, 1.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(10, 5, 1.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(8, 9, 2, 0, Math.PI * 2);
-        ctx.fill();
+        // Trailing wave arcs
+        ctx.strokeStyle = '#81D4FA';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(4, 8, 5, -0.9, 0.9); ctx.stroke();
+        ctx.beginPath(); ctx.arc(2, 8, 7, -0.7, 0.7); ctx.stroke();
 
         return canvas;
     },
 
     // ==========================================
-    // CHOCOLATE BALL — Boss projectile (canvas drawn, 20x20)
+    // HAILSTONE — Storm boss projectile (canvas drawn, 20x20) — key 'choco_ball'
     // ==========================================
     generateChocolateBall() {
         const canvas = document.createElement('canvas');
@@ -669,22 +611,22 @@ const SpriteGen = {
         canvas.height = 20;
         const ctx = canvas.getContext('2d');
 
-        // Dark chocolate sphere
-        ctx.fillStyle = '#5C3317';
+        // Icy hailstone
+        ctx.fillStyle = '#9FD3E8';
         ctx.beginPath();
         ctx.arc(10, 10, 8, 0, Math.PI * 2);
         ctx.fill();
 
-        // Highlight
-        ctx.fillStyle = '#7B4B2A';
+        // Cooler shaded lower half
+        ctx.fillStyle = '#6FB0CC';
         ctx.beginPath();
-        ctx.arc(8, 7, 4, 0, Math.PI * 2);
+        ctx.arc(10, 12, 6, 0, Math.PI * 2);
         ctx.fill();
 
-        // Shiny spot
-        ctx.fillStyle = '#A0673D';
+        // Bright shine
+        ctx.fillStyle = '#FFFFFF';
         ctx.beginPath();
-        ctx.arc(7, 6, 2, 0, Math.PI * 2);
+        ctx.arc(7, 6, 2.5, 0, Math.PI * 2);
         ctx.fill();
 
         return canvas;
@@ -693,6 +635,7 @@ const SpriteGen = {
     // ==========================================
     // TESLA & OBSTACLES
     // ==========================================
+    // Class A MOTORHOME (Brenda's RV) — reuses texture key 'tesla', faces right
     generateTesla() {
         const canvas = document.createElement('canvas');
         canvas.width = 96;
@@ -702,86 +645,82 @@ const SpriteGen = {
         // Shadow
         ctx.fillStyle = 'rgba(0,0,0,0.15)';
         ctx.beginPath();
-        ctx.ellipse(48, 44, 38, 4, 0, 0, Math.PI * 2);
+        ctx.ellipse(48, 45, 44, 4, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Main body (white Model Y profile)
-        ctx.fillStyle = '#F5F5F5';
+        // Main body — big boxy motorhome, cream/white
+        ctx.fillStyle = '#F3EFE4';
         ctx.beginPath();
-        ctx.moveTo(8, 32);
-        ctx.lineTo(10, 18);
-        ctx.quadraticCurveTo(16, 9, 30, 7);
-        ctx.lineTo(62, 7);
-        ctx.quadraticCurveTo(76, 9, 83, 16);
-        ctx.lineTo(88, 28);
-        ctx.lineTo(88, 35);
-        ctx.lineTo(8, 35);
+        ctx.moveTo(4, 12);
+        ctx.lineTo(70, 12);
+        ctx.quadraticCurveTo(80, 12, 84, 18); // sloped cab nose (front-right)
+        ctx.lineTo(92, 26);
+        ctx.lineTo(92, 38);
+        ctx.lineTo(4, 38);
         ctx.closePath();
         ctx.fill();
-        ctx.strokeStyle = '#CCCCCC';
+        ctx.strokeStyle = '#CFC7B4';
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Windows (dark tint)
-        ctx.fillStyle = '#334455';
-        ctx.beginPath();
-        ctx.moveTo(25, 9);
-        ctx.lineTo(38, 9);
-        ctx.lineTo(38, 20);
-        ctx.lineTo(19, 20);
-        ctx.closePath();
-        ctx.fill();
-        ctx.fillRect(40, 9, 20, 11);
-        ctx.beginPath();
-        ctx.moveTo(62, 9);
-        ctx.lineTo(74, 13);
-        ctx.lineTo(76, 20);
-        ctx.lineTo(62, 20);
-        ctx.closePath();
-        ctx.fill();
+        // Roof line + AC unit
+        ctx.fillStyle = '#E4DDCB';
+        ctx.fillRect(4, 12, 66, 3);
+        ctx.fillStyle = '#D8D2C0';
+        ctx.fillRect(30, 8, 16, 4);
 
-        // Window pillars
-        ctx.strokeStyle = '#DDDDDD';
-        ctx.lineWidth = 1.5;
+        // Teal + orange swoosh stripe (matches Brenda's palette)
+        ctx.fillStyle = '#2E8B7F';
         ctx.beginPath();
-        ctx.moveTo(39, 9); ctx.lineTo(39, 20);
-        ctx.moveTo(61, 9); ctx.lineTo(61, 20);
-        ctx.stroke();
-
-        // Door line
-        ctx.strokeStyle = '#CCCCCC';
-        ctx.lineWidth = 0.5;
+        ctx.moveTo(4, 30); ctx.lineTo(70, 26); ctx.lineTo(90, 30);
+        ctx.lineTo(90, 34); ctx.lineTo(4, 34); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#F4A259';
         ctx.beginPath();
-        ctx.moveTo(48, 20); ctx.lineTo(48, 32);
-        ctx.stroke();
+        ctx.moveTo(4, 34); ctx.lineTo(90, 34); ctx.lineTo(90, 36); ctx.lineTo(4, 36); ctx.closePath(); ctx.fill();
 
-        // Wheels
+        // Living-area side windows (tinted)
+        ctx.fillStyle = '#8FC7D6';
+        ctx.fillRect(10, 17, 14, 9);
+        ctx.fillRect(28, 17, 14, 9);
+        ctx.fillRect(46, 17, 12, 9);
+        // Window frames
+        ctx.strokeStyle = '#CFC7B4';
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(10, 17, 14, 9);
+        ctx.strokeRect(28, 17, 14, 9);
+        ctx.strokeRect(46, 17, 12, 9);
+
+        // Cab windshield (front-right)
+        ctx.fillStyle = '#B6DCE6';
+        ctx.beginPath();
+        ctx.moveTo(70, 15); ctx.lineTo(80, 15);
+        ctx.quadraticCurveTo(86, 19, 88, 26);
+        ctx.lineTo(70, 26); ctx.closePath(); ctx.fill();
+
+        // Entry door
+        ctx.fillStyle = '#DDD6C4';
+        ctx.fillRect(60, 22, 8, 14);
+        ctx.strokeStyle = '#B8B09C';
+        ctx.strokeRect(60, 22, 8, 14);
+        ctx.fillStyle = '#8FC7D6';
+        ctx.fillRect(62, 24, 4, 4);
+
+        // Wheels (dual-ish)
         ctx.fillStyle = '#222222';
-        ctx.beginPath(); ctx.arc(26, 36, 8, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(70, 36, 8, 0, Math.PI * 2); ctx.fill();
-        // Rims
-        ctx.fillStyle = '#888888';
-        ctx.beginPath(); ctx.arc(26, 36, 4, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(70, 36, 4, 0, Math.PI * 2); ctx.fill();
-        // Hub caps
+        ctx.beginPath(); ctx.arc(22, 39, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(76, 39, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#8a8a8a';
+        ctx.beginPath(); ctx.arc(22, 39, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(76, 39, 4, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#FFFFFF';
-        ctx.beginPath(); ctx.arc(26, 36, 1.5, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(70, 36, 1.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(22, 39, 1.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(76, 39, 1.5, 0, Math.PI * 2); ctx.fill();
 
-        // Headlight
+        // Headlight (front-right) + taillight (rear-left)
         ctx.fillStyle = '#FFEE88';
-        ctx.fillRect(86, 22, 3, 5);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(86, 20, 3, 2);
-        // Taillight
-        ctx.fillStyle = '#FF2222';
-        ctx.fillRect(7, 22, 3, 5);
-
-        // Tesla T badge
-        ctx.fillStyle = '#CC0000';
-        ctx.font = 'bold 7px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('T', 48, 30);
+        ctx.fillRect(89, 30, 3, 4);
+        ctx.fillStyle = '#FF3B3B';
+        ctx.fillRect(4, 30, 3, 4);
 
         return canvas;
     },
@@ -937,16 +876,27 @@ const SpriteGen = {
         ctx.fillStyle = '#FFE0C2';
         ctx.beginPath(); ctx.arc(24, 14, 10, 0, Math.PI * 2); ctx.fill();
 
-        // Brown hair
-        ctx.fillStyle = '#6B4226';
+        // Salt-and-pepper hair at the sides
+        ctx.fillStyle = '#9a9a9a';
+        ctx.fillRect(14, 10, 3, 7);
+        ctx.fillRect(31, 10, 3, 7);
+        ctx.fillStyle = '#7d7d7d';
+        ctx.fillRect(14, 13, 3, 4);
+        ctx.fillRect(31, 13, 3, 4);
+
+        // Ball cap (Tony's camping cap — teal)
+        ctx.fillStyle = '#2E8B7F';
         ctx.beginPath();
-        ctx.arc(24, 12, 10, Math.PI, 2 * Math.PI);
+        ctx.arc(24, 9, 11, Math.PI, 2 * Math.PI);
         ctx.fill();
-        ctx.fillRect(14, 6, 20, 6);
-        // Side hair
-        ctx.fillStyle = '#5C3317';
-        ctx.fillRect(14, 10, 3, 6);
-        ctx.fillRect(31, 10, 3, 6);
+        ctx.fillRect(13, 8, 22, 3);
+        // Cap brim
+        ctx.fillStyle = '#256f65';
+        ctx.fillRect(30, 9, 12, 3);
+        // Gray sideburns peeking under cap
+        ctx.fillStyle = '#8a8a8a';
+        ctx.fillRect(14, 11, 2, 5);
+        ctx.fillRect(32, 11, 2, 5);
 
         // Green eyes
         ctx.fillStyle = '#FFFFFF';
@@ -973,65 +923,73 @@ const SpriteGen = {
         return canvas;
     },
 
+    // Small raccoon sneaking toward the campsite food — key 'approach_girl'
     generateApproachGirl() {
         const canvas = document.createElement('canvas');
         canvas.width = 32;
         canvas.height = 52;
         const ctx = canvas.getContext('2d');
 
+        const fur = '#8A8F98';
+        const furDark = '#5D636C';
+        const cream = '#D8DBE0';
+
         // Shadow
         ctx.fillStyle = 'rgba(0,0,0,0.1)';
-        ctx.beginPath(); ctx.ellipse(16, 50, 9, 2, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(16, 50, 10, 2, 0, 0, Math.PI * 2); ctx.fill();
 
-        // Legs
-        ctx.fillStyle = '#FFE0C2';
-        ctx.fillRect(10, 36, 5, 12);
-        ctx.fillRect(18, 36, 5, 12);
-        // Shoes
-        ctx.fillStyle = '#FF69B4';
-        ctx.fillRect(9, 47, 7, 3);
-        ctx.fillRect(17, 47, 7, 3);
+        // Ringed tail
+        ctx.fillStyle = furDark;
+        ctx.beginPath(); ctx.ellipse(26, 40, 4, 8, 0.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = fur; ctx.fillRect(24, 36, 5, 2);
+        ctx.fillStyle = furDark; ctx.fillRect(24, 40, 5, 2);
 
-        // Dress
-        ctx.fillStyle = '#FF4444';
-        ctx.beginPath();
-        ctx.moveTo(8, 22);
-        ctx.lineTo(6, 38);
-        ctx.lineTo(26, 38);
-        ctx.lineTo(24, 22);
-        ctx.closePath();
-        ctx.fill();
+        // Feet
+        ctx.fillStyle = furDark;
+        ctx.fillRect(10, 44, 5, 5);
+        ctx.fillRect(17, 44, 5, 5);
 
-        // Neck
-        ctx.fillStyle = '#FFE0C2';
-        ctx.fillRect(14, 16, 4, 5);
+        // Body
+        ctx.fillStyle = fur;
+        ctx.beginPath(); ctx.ellipse(16, 34, 10, 12, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = cream;
+        ctx.beginPath(); ctx.ellipse(16, 36, 5, 8, 0, 0, Math.PI * 2); ctx.fill();
+
+        // Grabby paws reaching up
+        ctx.fillStyle = furDark;
+        ctx.beginPath(); ctx.arc(8, 26, 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(24, 26, 2.5, 0, Math.PI * 2); ctx.fill();
 
         // Head
-        ctx.fillStyle = '#FFE0C2';
-        ctx.beginPath(); ctx.arc(16, 10, 8, 0, Math.PI * 2); ctx.fill();
-
-        // Blonde hair
-        ctx.fillStyle = '#F5D442';
-        ctx.beginPath(); ctx.arc(16, 8, 8, Math.PI, 2 * Math.PI); ctx.fill();
-        ctx.fillRect(8, 3, 16, 6);
-        // Long hair sides
-        ctx.fillRect(7, 6, 3, 14);
-        ctx.fillRect(22, 6, 3, 14);
-
+        ctx.fillStyle = fur;
+        ctx.beginPath(); ctx.arc(16, 14, 9, 0, Math.PI * 2); ctx.fill();
+        // Ears
+        ctx.beginPath(); ctx.moveTo(9, 8); ctx.lineTo(7, 2); ctx.lineTo(14, 7); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(23, 8); ctx.lineTo(25, 2); ctx.lineTo(18, 7); ctx.fill();
+        // Cream muzzle
+        ctx.fillStyle = cream;
+        ctx.beginPath(); ctx.arc(16, 17, 5, 0, Math.PI * 2); ctx.fill();
+        // Bandit mask
+        ctx.fillStyle = '#2b2b2b';
+        ctx.beginPath();
+        ctx.moveTo(8, 13); ctx.lineTo(24, 13); ctx.lineTo(22, 18);
+        ctx.lineTo(18, 15); ctx.lineTo(14, 15); ctx.lineTo(10, 18); ctx.closePath(); ctx.fill();
         // Eyes
-        ctx.fillStyle = '#4488CC';
-        ctx.fillRect(12, 9, 3, 2);
-        ctx.fillRect(18, 9, 3, 2);
+        ctx.fillStyle = '#FFE44D';
+        ctx.beginPath(); ctx.arc(12, 15, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(20, 15, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#000';
+        ctx.beginPath(); ctx.arc(12, 15, 1, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(20, 15, 1, 0, Math.PI * 2); ctx.fill();
+        // Nose
+        ctx.fillStyle = '#1a1a1a';
+        ctx.beginPath(); ctx.arc(16, 19, 1.5, 0, Math.PI * 2); ctx.fill();
 
-        // Lips
-        ctx.fillStyle = '#FF4466';
-        ctx.fillRect(14, 14, 5, 1.5);
-
-        // Heart emoji above (they want the boyfriend!)
-        ctx.fillStyle = '#FF0000';
-        ctx.font = '8px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('<3', 16, 0);
+        // Little snack they're eyeing (drumstick) above head
+        ctx.fillStyle = '#C97B3C';
+        ctx.beginPath(); ctx.arc(16, 2, 3, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#FBE3C4';
+        ctx.fillRect(15, 3, 2, 4);
 
         return canvas;
     },
@@ -1045,33 +1003,37 @@ const SpriteGen = {
         canvas.height = 64;
         const ctx = canvas.getContext('2d');
 
-        // Legs — navy pants
-        ctx.fillStyle = '#1A1A44';
+        // Legs — dark green ranger pants
+        ctx.fillStyle = '#2f3d24';
         ctx.fillRect(12, 48, 7, 16);
         ctx.fillRect(22, 48, 7, 16);
 
-        // Shoes — black
-        ctx.fillStyle = '#111111';
+        // Shoes — brown boots
+        ctx.fillStyle = '#3a2412';
         ctx.fillRect(11, 60, 9, 4);
         ctx.fillRect(21, 60, 9, 4);
 
-        // Body — white captain uniform
-        ctx.fillStyle = '#FFFFFF';
+        // Body — tan ranger shirt
+        ctx.fillStyle = '#C7B37E';
         ctx.fillRect(10, 22, 21, 28);
 
-        // Uniform details — gold buttons
-        ctx.fillStyle = '#FFD700';
+        // Uniform details — buttons
+        ctx.fillStyle = '#6b5a2e';
         ctx.fillRect(19, 26, 3, 2);
         ctx.fillRect(19, 31, 3, 2);
         ctx.fillRect(19, 36, 3, 2);
 
-        // Epaulettes — gold shoulder boards
+        // Ranger badge (gold star)
         ctx.fillStyle = '#FFD700';
+        ctx.fillRect(13, 27, 4, 4);
+
+        // Epaulettes — green shoulder boards
+        ctx.fillStyle = '#3a4a2a';
         ctx.fillRect(8, 22, 5, 3);
         ctx.fillRect(28, 22, 5, 3);
 
-        // Arms — white sleeves
-        ctx.fillStyle = '#FFFFFF';
+        // Arms — tan sleeves
+        ctx.fillStyle = '#C7B37E';
         ctx.fillRect(5, 24, 6, 18);
         ctx.fillRect(30, 24, 6, 18);
 
@@ -1088,16 +1050,16 @@ const SpriteGen = {
         ctx.fillStyle = '#FFDCB5';
         ctx.fillRect(12, 4, 17, 16);
 
-        // Captain hat — white with black brim and gold badge
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(10, 1, 21, 6);
-        ctx.fillStyle = '#111111';
-        ctx.fillRect(8, 6, 25, 3);
-        ctx.fillStyle = '#FFD700';
-        ctx.fillRect(17, 2, 7, 3);
-        // Hat badge anchor
-        ctx.fillStyle = '#FFD700';
-        ctx.fillRect(19, 3, 3, 1);
+        // Ranger campaign hat — brown felt with wide brim
+        ctx.fillStyle = '#6b4a26';
+        ctx.fillRect(13, 1, 15, 6);      // crown
+        ctx.fillStyle = '#5a3d1f';
+        ctx.fillRect(15, 0, 11, 2);      // pinched top
+        ctx.fillStyle = '#7a5730';
+        ctx.fillRect(6, 6, 29, 3);       // wide brim
+        // Hat band
+        ctx.fillStyle = '#4a3218';
+        ctx.fillRect(13, 5, 15, 1);
 
         // Eyes
         ctx.fillStyle = '#222222';

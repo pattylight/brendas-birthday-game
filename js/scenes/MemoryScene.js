@@ -1,4 +1,4 @@
-// MemoryScene.js — Chocolate Tasting memory matching game!
+// MemoryScene.js — Brenda's AeroGarden memory matching game!
 class MemoryScene extends Phaser.Scene {
     constructor() {
         super({ key: 'MemoryScene' });
@@ -9,7 +9,7 @@ class MemoryScene extends Phaser.Scene {
 
         this.events.on('shutdown', () => this.stopAmbientMusic());
 
-        // Warm chocolate background
+        // Warm garden soil background
         this.add.rectangle(w / 2, h / 2, w, h, 0x3E2723);
 
         // Decorative border
@@ -18,28 +18,28 @@ class MemoryScene extends Phaser.Scene {
 
         // Corner decorations
         [{ x: 20, y: 20 }, { x: w - 20, y: 20 }, { x: 20, y: h - 20 }, { x: w - 20, y: h - 20 }].forEach(pos => {
-            this.add.text(pos.x, pos.y, '🍫', { fontSize: '21px' }).setOrigin(0.5).setDepth(2);
+            this.add.text(pos.x, pos.y, '🌱', { fontSize: '21px' }).setOrigin(0.5).setDepth(2);
         });
 
         // Title
-        this.add.text(w / 2, 25, 'Chocolate Tasting Lounge', {
+        this.add.text(w / 2, 25, 'Brenda\'s AeroGarden', {
             fontSize: '27px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setDepth(10);
 
-        this.add.text(w / 2, 48, 'Match the chocolate pairs!', {
+        this.add.text(w / 2, 48, 'Match the garden pairs!', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#BCAAA4', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setDepth(10);
 
-        // 6 chocolate types = 6 pairs = 12 cards (4x3 grid)
+        // 6 garden types = 6 pairs = 12 cards (4x3 grid)
         this.chocolateTypes = [
-            { name: 'Dark', emoji: '🍫', color: 0x3E2723, textColor: '#D7CCC8' },
-            { name: 'Milk', emoji: '🥛🍫', color: 0x6D4C41, textColor: '#EFEBE9' },
-            { name: 'White', emoji: '🤍', color: 0xBCAAA4, textColor: '#3E2723' },
-            { name: 'Truffle', emoji: '🟤', color: 0x4E342E, textColor: '#EFEBE9' },
-            { name: 'Caramel', emoji: '🍬', color: 0xE65100, textColor: '#FFF3E0' },
-            { name: 'Praline', emoji: '💜', color: 0x6A1B9A, textColor: '#F3E5F5' },
+            { name: 'Lettuce', emoji: '🥬', color: 0x2E7D32, textColor: '#E8F5E9' },
+            { name: 'Tomato', emoji: '🍅', color: 0xC62828, textColor: '#FFEBEE' },
+            { name: 'Seedling', emoji: '🌱', color: 0x558B2F, textColor: '#F1F8E9' },
+            { name: 'Basil', emoji: '🌿', color: 0x33691E, textColor: '#F1F8E9' },
+            { name: 'Carrot', emoji: '🥕', color: 0xE65100, textColor: '#FFF3E0' },
+            { name: 'Blueberry', emoji: '🫐', color: 0x283593, textColor: '#E8EAF6' },
         ];
 
         // Create shuffled pairs
@@ -75,7 +75,7 @@ class MemoryScene extends Phaser.Scene {
                 .setStrokeStyle(2, 0xA1887F)
                 .setInteractive({ useHandCursor: true })
                 .setDepth(5);
-            const backEmoji = this.add.text(x, y - 8, '🍫', { fontSize: '31px' })
+            const backEmoji = this.add.text(x, y - 8, '🌱', { fontSize: '31px' })
                 .setOrigin(0.5).setDepth(6);
             const backQ = this.add.text(x, y + 18, '?', {
                 fontSize: '24px', fontFamily: 'Arial Black, Arial, sans-serif',
@@ -194,7 +194,7 @@ class MemoryScene extends Phaser.Scene {
                 });
 
                 // Praise text
-                const phrases = ['Yummy!', 'Delicious!', 'Sweet!', 'Tasty!', 'Mmm!', 'Perfect!'];
+                const phrases = ['Fresh!', 'Growing!', 'Sprout!', 'Harvest!', 'Yum!', 'Perfect!'];
                 const phrase = phrases[Math.min(this.matchedPairs - 1, phrases.length - 1)];
                 const praise = this.add.text(
                     (c1.x + c2.x) / 2, Math.min(c1.y, c2.y) - 30, phrase,
@@ -256,7 +256,7 @@ class MemoryScene extends Phaser.Scene {
         const stars = this.moves <= 8 ? '⭐⭐⭐' : this.moves <= 12 ? '⭐⭐' : '⭐';
 
         const text = this.add.text(w / 2, h / 2 - 30,
-            'All Chocolates Matched!\n' + stars + '\nMoves: ' + this.moves,
+            'All Veggies Matched!\n' + stars + '\nMoves: ' + this.moves,
             {
                 fontSize: '26px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFD700', stroke: '#000000', strokeThickness: 4,
@@ -269,10 +269,10 @@ class MemoryScene extends Phaser.Scene {
             duration: 600, ease: 'Back.easeOut'
         });
 
-        // Chocolate confetti
+        // Garden confetti
         this.time.addEvent({
             delay: 80, repeat: 30, callback: () => {
-                const emojis = ['🍫', '🤎', '🍬', '✨', '🎉'];
+                const emojis = ['🥬', '🍅', '🥕', '✨', '🎉'];
                 const choc = this.add.text(
                     Phaser.Math.Between(50, w - 50), -20,
                     emojis[Phaser.Math.Between(0, emojis.length - 1)],
@@ -372,7 +372,7 @@ class MemoryScene extends Phaser.Scene {
             const bpm = 72;
             const quarter = 60 / bpm;
 
-            // Calm jazzy chocolate shop melody
+            // Calm jazzy garden melody
             const melody = [
                 [330, 2], [370, 2], [440, 4], [0, 2], [392, 2],
                 [370, 2], [330, 2], [294, 4], [0, 2], [262, 2],
