@@ -18,7 +18,7 @@ class ShooScene extends Phaser.Scene {
         // Pool in background
         this.add.rectangle(w / 2, 150, 300, 70, 0x40E0D0, 0.5).setDepth(-4);
         this.add.rectangle(w / 2, 150, 290, 60, 0x5DE0D0, 0.4).setDepth(-4);
-        this.add.text(w / 2, 125, 'FREE ESTIMATES!', {
+        this.add.text(w / 2, 125, 'CULLEN PAINTING', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#1565C0', strokeThickness: 2
         }).setOrigin(0.5).setDepth(-3).setAlpha(0.7);
