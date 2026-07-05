@@ -347,7 +347,7 @@ class ShooScene extends Phaser.Scene {
         const girl = girlObj.sprite;
 
         // Customer fires off a question
-        const flirt = this.add.text(girl.x, girl.y - 30, Phaser.Utils.Array.GetRandom(['Free estimate??','How much for a barn?','Can you start today?','Whats your best price?','Do you do ceilings?','Paint my fence too?']), { fontSize: '21px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#2E8B7F', stroke: '#000000', strokeThickness: 2 })
+        const flirt = this.add.text(girl.x, girl.y - 30, Phaser.Utils.Array.GetRandom(['Do you do ceilings?','Can you do it cheaper?','Any discounts?','Can you start today?','How much for a barn?','Can you beat this quote?','Is the paint free?','Do you do Saturdays?']), { fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#2E8B7F', stroke: '#000000', strokeThickness: 2 })
             .setOrigin(0.5).setDepth(50);
         this.tweens.add({
             targets: flirt, y: flirt.y - 20, alpha: 0,
@@ -376,14 +376,11 @@ class ShooScene extends Phaser.Scene {
 
         this.playJealousySound();
         this.cameras.main.shake(150, 0.005);
-
-        if (this.wave < 6 && this.jealousyMeter >= this.maxJealousy) {
-            this.triggerGameOver();
-        }
+        // Birthday mode: unlimited lives — the chaos meter fills for fun but never ends the level
     }
 
     updateJealousyBar() {
-        const pct = this.jealousyMeter / this.maxJealousy;
+        const pct = Math.min(1, this.jealousyMeter / this.maxJealousy);
         this.tweens.add({
             targets: this.jealousyBar,
             displayWidth: 100 * pct, duration: 300

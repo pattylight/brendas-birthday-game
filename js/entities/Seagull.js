@@ -10,8 +10,12 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
         this.body.setAllowGravity(false); // flying storm — hovers, never sinks into the floor
         this.setCollideWorldBounds(true);
 
-        this.maxHP = 15;
-        this.hp = 15;
+        this.maxHP = 24;
+        this.hp = 24;
+        this.phaseTint = 0xffffff;
+        this.isTornado = false;
+        this.debrisTimer = 0;
+        this.tornadoDir = 1;
         this.isDead = false;
         this.isInvulnerable = false;
         this.isEntering = true;
@@ -48,7 +52,7 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
 
         this.setTint(0xFF0000);
         this.scene.time.delayedCall(200, () => {
-            if (!this.isDead) this.clearTint();
+            if (!this.isDead) this.setTint(this.phaseTint);   // keep the current phase color
         });
 
         this.scene.cameras.main.shake(100, 0.008);
@@ -56,8 +60,8 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
 
         // Check for phase transitions
         const oldPhase = this.phase;
-        if (this.hp <= 5) this.phase = 3;
-        else if (this.hp <= 10) this.phase = 2;
+        if (this.hp <= 8) this.phase = 3;
+        else if (this.hp <= 16) this.phase = 2;
 
         if (this.phase !== oldPhase) {
             this.startPhaseTransition(this.phase);
@@ -173,14 +177,18 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
         let phaseText = '';
         let phaseColor = '#FFFFFF';
         if (newPhase === 2) {
-            phaseText = 'PHASE 2: THUNDERSTORM!';
-            phaseColor = '#4FC3F7';
-            this.setTint(0x8899AA);
+            phaseText = 'PHASE 2: THUNDERHEAD!';
+            phaseColor = '#B39DDB';
+            this.phaseTint = 0x6a4fb0;
+            this.setTint(this.phaseTint);
+            this.setScale(1.12);
         } else if (newPhase === 3) {
-            phaseText = 'PHASE 3: CLOUDBURST!';
-            phaseColor = '#FFE44D';
-            this.setTint(0x556677);
-            this.setScale(1.15);
+            phaseText = 'PHASE 3: TORNADO!!';
+            phaseColor = '#E0E0E0';
+            this.phaseTint = 0x9aa4ad;
+            this.setTint(this.phaseTint);
+            this.setScale(1.25, 1.6);   // stretch into a spinning funnel
+            this.isTornado = true;
         }
 
         const announcement = this.scene.add.text(w / 2, h / 2 - 30, phaseText, {
@@ -354,6 +362,81 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
         });
     }
 
+    // PHASE 2 attack: a lightning bolt strikes down a column at targetX
+    lightningStrike(targetX) {
+        if (this.isDead || this.phaseTransitioning) return;
+        const w = this.scene.cameras.main.width;
+        const h = this.scene.cameras.main.height;
+        const groundY = h - 86;
+        const cx = Phaser.Math.Clamp(targetX, 20, w - 20);
+
+        // Telegraph column (a warning flash where the bolt will land)
+        const warn = this.scene.add.rectangle(cx, groundY / 2, 34, groundY, 0xFFF176, 0.22).setDepth(7);
+        this.scene.tweens.add({ targets: warn, alpha: 0.55, duration: 160, yoyo: true, repeat: 2 });
+
+        this.scene.time.delayedCall(720, () => {
+            warn.destroy();
+            if (this.isDead) return;
+            // The strike
+            const bolt = this.scene.add.rectangle(cx, groundY / 2, 8, groundY, 0xFFFFFF, 0.95).setDepth(9);
+            const glow = this.scene.add.rectangle(cx, groundY / 2, 22, groundY, 0xB39DDB, 0.5).setDepth(8);
+            this.scene.tweens.add({ targets: [bolt, glow], alpha: 0, duration: 260, onComplete: () => { bolt.destroy(); glow.destroy(); } });
+            this.scene.cameras.main.flash(120, 230, 220, 255);
+            this.scene.cameras.main.shake(220, 0.012);
+            this.playThunder();
+            const jen = this.scene.jennifer;
+            if (jen && Math.abs(jen.x - cx) < 28 && this.scene.hurtJennifer) {
+                this.scene.hurtJennifer();
+            }
+        });
+    }
+
+    playThunder() {
+        try {
+            const ctx = this.scene.sound.context;
+            if (!ctx) return;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(160, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+            osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.6);
+        } catch (e) {}
+    }
+
+    // PHASE 3 (tornado) flings debris sideways
+    shootDebris(dir) {
+        if (this.isDead || !this.chocoBalls || !this.scene) return;
+        const ball = this.chocoBalls.create(this.x, this.y + Phaser.Math.Between(-18, 18), 'choco_ball');
+        if (!ball) return;
+        ball.setDepth(8);
+        ball.body.setAllowGravity(false);
+        ball.setVelocity(dir * Phaser.Math.Between(230, 300), Phaser.Math.Between(-50, 50));
+        this.scene.time.delayedCall(3000, () => { if (ball && ball.active) ball.destroy(); });
+    }
+
+    updateTornado(time, delta) {
+        const w = this.scene.cameras.main.width;
+        // Spin fast like a funnel
+        this.angle += 16;
+        // Sweep across the arena, bouncing off the edges
+        this.setVelocityX(this.tornadoDir * 165);
+        if (this.x < 70) this.tornadoDir = 1;
+        else if (this.x > w - 70) this.tornadoDir = -1;
+        // Fling debris + occasional lightning
+        this.debrisTimer += delta;
+        if (this.debrisTimer >= 620) {
+            this.debrisTimer = 0;
+            this.shootDebris(-1);
+            this.shootDebris(1);
+            const jen = this.scene.jennifer;
+            if (jen && Math.random() < 0.45) this.lightningStrike(jen.x);
+        }
+    }
+
     updateBoss(time, delta) {
         if (this.isDead || this.isEntering || !this.body || !this.body.enable) return;
 
@@ -363,7 +446,6 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
         // Don't act during phase transitions
         if (this.phaseTransitioning) {
             this.setVelocityX(0);
-            // Pulsing glow during transition
             this.alpha = 0.6 + Math.sin(time * 0.01) * 0.4;
             return;
         }
@@ -376,66 +458,45 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
             if (this.body) this.body.setVelocityY(0);
         }
 
-        // Chase Jennifer (not during slam)
-        if (!this.slamming && !this.telegraphing) {
-            const speed = this.phase === 1 ? 35 : this.phase === 2 ? 55 : 45;
-            if (jennifer.x < this.x - 30) {
-                this.setVelocityX(-speed);
-                this.setFlipX(true);
-            } else if (jennifer.x > this.x + 30) {
-                this.setVelocityX(speed);
-                this.setFlipX(false);
-            } else {
-                this.setVelocityX(0);
-            }
+        // PHASE 3: the storm has TRANSFORMED into a tornado — completely different behavior
+        if (this.phase === 3) {
+            this.updateTornado(time, delta);
+            return;
         }
 
-        // Attack timer — more generous intervals
-        this.attackTimer += delta;
-        const attackInterval = this.phase === 1 ? 2800 : this.phase === 2 ? 2000 : 1400;
+        // Phases 1 & 2: chase the player
+        if (!this.telegraphing) {
+            const speed = this.phase === 1 ? 38 : 64;
+            if (jennifer.x < this.x - 30) { this.setVelocityX(-speed); this.setFlipX(true); }
+            else if (jennifer.x > this.x + 30) { this.setVelocityX(speed); this.setFlipX(false); }
+            else { this.setVelocityX(0); }
+        }
 
+        // Attacks
+        this.attackTimer += delta;
+        const attackInterval = this.phase === 1 ? 2500 : 1700;
         if (this.attackTimer >= attackInterval) {
             this.attackTimer = 0;
             const rand = Math.random();
-
             if (this.phase === 1) {
-                // Phase 1: Simple single shots with telegraph
-                this.telegraphAttack(() => {
-                    this.shootChocolate(jennifer.x, jennifer.y);
-                });
-            } else if (this.phase === 2) {
-                // Phase 2: Mix of slams and aimed shots
-                if (rand < 0.3) {
-                    this.telegraphAttack(() => this.groundSlam());
-                } else {
-                    this.telegraphAttack(() => {
-                        this.shootChocolate(jennifer.x, jennifer.y);
-                        // Occasional spread shot
-                        if (rand > 0.6) {
-                            this.scene.time.delayedCall(300, () => {
-                                this.shootChocolate(jennifer.x + 80, jennifer.y - 40);
-                            });
-                        }
-                    });
-                }
+                // Rain cloud: telegraphed aimed hail
+                this.telegraphAttack(() => this.shootChocolate(jennifer.x, jennifer.y));
             } else {
-                // Phase 3: Desperate — rapid bursts + slams, but boss is slower
-                if (rand < 0.35) {
-                    this.telegraphAttack(() => this.groundSlam());
+                // Thunderhead: lightning strikes + a hail spread
+                if (rand < 0.5) {
+                    this.lightningStrike(jennifer.x);
                 } else {
                     this.telegraphAttack(() => {
                         this.shootChocolate(jennifer.x, jennifer.y);
-                        this.scene.time.delayedCall(250, () => {
-                            this.shootChocolate(jennifer.x - 60, jennifer.y);
-                        });
+                        this.scene.time.delayedCall(280, () => this.shootChocolate(jennifer.x + 70, jennifer.y - 30));
                     });
                 }
             }
         }
 
-        // Wobble animation — more frantic in later phases
-        const wobbleSpeed = this.phase === 1 ? 0.002 : this.phase === 2 ? 0.004 : 0.006;
-        const wobbleAmt = this.phase === 1 ? 2 : this.phase === 2 ? 4 : 6;
+        // Gentle wobble
+        const wobbleSpeed = this.phase === 1 ? 0.002 : 0.004;
+        const wobbleAmt = this.phase === 1 ? 2 : 4;
         this.angle = Math.sin(time * wobbleSpeed) * wobbleAmt;
     }
 }

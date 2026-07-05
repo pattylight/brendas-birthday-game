@@ -147,11 +147,11 @@ class TitleScene extends Phaser.Scene {
             ['RV', 'TeslaScene'],
             ['Camp', 'GameScene'],
             ['Garden', 'MemoryScene'],
-            ['Raccoons', 'ShooScene'],
-            ['Jam', 'NightClubScene'],
-            ['Storm', 'BossScene'],
+            ['Cullen', 'ShooScene'],
+            ['Heron', 'NightClubScene'],
+            ['Boss', 'BossScene'],
+            ['Radio', 'MusterScene'],
             ['Victory', 'VictoryScene'],
-            ['Checkin', 'MusterScene'],
         ];
 
         const debugBg = this.add.rectangle(w / 2, h - 45, 420, 70, 0x000000, 0.7)
