@@ -811,11 +811,11 @@ class GameScene extends Phaser.Scene {
         // Story outro
         const overlay = this.add.rectangle(400, 225, 800, 450, 0x000000, 0.7)
             .setScrollFactor(0).setDepth(200);
-        const outroT1 = this.add.text(400, 190, 'Hurry up!', {
+        const outroT1 = this.add.text(400, 190, 'Happy hour soon...', {
             fontSize: '29px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201).setScale(0.5);
-        const outroT2 = this.add.text(400, 235, 'Happy hour at the RV starts soon!', {
+        const outroT2 = this.add.text(400, 235, 'but first, Brenda tends her AeroGarden!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
         }).setOrigin(0.5).setScrollFactor(0).setDepth(201).setAlpha(0);
