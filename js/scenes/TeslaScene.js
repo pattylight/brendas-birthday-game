@@ -198,7 +198,7 @@ class TeslaScene extends Phaser.Scene {
 
     createUI() {
         const w = 800;
-        this.livesText = this.add.text(20, 12, '❤️❤️❤️', { fontSize: '24px' }).setDepth(100);
+        this.livesText = this.add.text(20, 12, '❤️ ∞', { fontSize: '24px' }).setDepth(100);
 
         // Progress bar
         this.add.rectangle(w / 2, 14, 204, 14, 0x333333).setDepth(99);
@@ -256,9 +256,8 @@ class TeslaScene extends Phaser.Scene {
     hitObstacle() {
         if (this.isInvulnerable || this.gameOver) return;
 
-        this.lives--;
+        // Birthday mode: unlimited lives — a crash just slows you down, never a game over
         this.isInvulnerable = true;
-        this.updateLivesDisplay();
 
         // Slow down on crash
         this.speed = Math.max(200, this.speed * 0.4);
@@ -283,8 +282,6 @@ class TeslaScene extends Phaser.Scene {
 
         this.playHitSound();
         this.cameras.main.shake(200, 0.008);
-
-        if (this.lives <= 0) this.triggerGameOver();
     }
 
     collectPickup(pickup) {
