@@ -10,8 +10,8 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
         this.body.setAllowGravity(false); // flying storm — hovers, never sinks into the floor
         this.setCollideWorldBounds(true);
 
-        this.maxHP = 12;
-        this.hp = 12;
+        this.maxHP = 15;
+        this.hp = 15;
         this.isDead = false;
         this.isInvulnerable = false;
         this.isEntering = true;
@@ -56,8 +56,8 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
 
         // Check for phase transitions
         const oldPhase = this.phase;
-        if (this.hp <= 4) this.phase = 3;
-        else if (this.hp <= 8) this.phase = 2;
+        if (this.hp <= 5) this.phase = 3;
+        else if (this.hp <= 10) this.phase = 2;
 
         if (this.phase !== oldPhase) {
             this.startPhaseTransition(this.phase);

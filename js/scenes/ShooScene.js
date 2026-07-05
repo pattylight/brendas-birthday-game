@@ -1,4 +1,4 @@
-// ShooScene.js — Vanilla Ice keeps showing up to hang with Tony! Shoo him off, Brenda!
+// ShooScene.js — Customers keep swarming Tony with painting questions! Shoo them off, Brenda!
 class ShooScene extends Phaser.Scene {
     constructor() {
         super({ key: 'ShooScene' });
@@ -18,7 +18,7 @@ class ShooScene extends Phaser.Scene {
         // Pool in background
         this.add.rectangle(w / 2, 150, 300, 70, 0x40E0D0, 0.5).setDepth(-4);
         this.add.rectangle(w / 2, 150, 290, 60, 0x5DE0D0, 0.4).setDepth(-4);
-        this.add.text(w / 2, 125, 'THE GREAT OUTDOORS', {
+        this.add.text(w / 2, 125, 'FREE ESTIMATES!', {
             fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#1565C0', strokeThickness: 2
         }).setOrigin(0.5).setDepth(-3).setAlpha(0.7);
@@ -49,7 +49,7 @@ class ShooScene extends Phaser.Scene {
         // Critter paw-prints circle around Tony
         this.bfHearts = [];
         for (let i = 0; i < 3; i++) {
-            const heart = this.add.text(0, 0, '🎤', { fontSize: '18px' }).setDepth(4).setAlpha(0.4);
+            const heart = this.add.text(0, 0, '❓', { fontSize: '18px' }).setDepth(4).setAlpha(0.4);
             this.bfHearts.push({ obj: heart, angle: i * (Math.PI * 2 / 3) });
         }
 
@@ -98,7 +98,7 @@ class ShooScene extends Phaser.Scene {
             color: '#88CCFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
 
-        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Not the Vanilla Ice guys again! Help, Bren!"', {
+        const intro2 = this.add.text(w / 2, h / 2 - 38, '"Bren, I cannot keep up with these customers!"', {
             fontSize: '23px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFFFFF', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
@@ -115,14 +115,14 @@ class ShooScene extends Phaser.Scene {
                 alpha: 0, duration: 400
             });
 
-            // Vanilla Ice fan club shows up
+            // Customers swarm in
             this.time.delayedCall(900, () => {
                 const warn1 = this.add.text(w / 2, h / 2 - 55, 'Oh no!!', {
                     fontSize: '31px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FF4444', stroke: '#000000', strokeThickness: 5
                 }).setOrigin(0.5).setDepth(200);
 
-                const warn2 = this.add.text(w / 2, h / 2 - 15, "The Vanilla Ice fan club is here\nand they ALL want to hang with Tony! 🎤", {
+                const warn2 = this.add.text(w / 2, h / 2 - 15, "The customers won't stop coming\nwith questions for Tony! 🖌", {
                     fontSize: '19px', fontFamily: 'Arial Black, Arial, sans-serif',
                     color: '#FFD700', stroke: '#000000', strokeThickness: 4,
                     align: 'center'
@@ -195,7 +195,7 @@ class ShooScene extends Phaser.Scene {
         const girlCount = Math.min(2 + this.wave, 6);
         this.girlSpeed = 35 + this.wave * 8;
 
-        const waveText = this.add.text(400, 200, '\u{1F3A4} Wave ' + this.wave + '! \u{1F3A4}', {
+        const waveText = this.add.text(400, 200, '\u{2753} Wave ' + this.wave + '! \u{2753}', {
             fontSize: '27px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#2E8B7F', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(150);
@@ -225,7 +225,7 @@ class ShooScene extends Phaser.Scene {
             color: '#FF0000', stroke: '#000000', strokeThickness: 5
         }).setOrigin(0.5).setDepth(200);
 
-        const warn2 = this.add.text(400, 180, 'THE WHOLE FAN CLUB IS COMING!!', {
+        const warn2 = this.add.text(400, 180, 'THE WHOLE NEIGHBORHOOD IS COMING!!', {
             fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 4
         }).setOrigin(0.5).setDepth(200);
@@ -240,7 +240,7 @@ class ShooScene extends Phaser.Scene {
             onComplete: () => { warn1.destroy(); warn2.destroy(); }
         });
 
-        // Spawn 12 Vanilla Ices in rapid succession from both sides
+        // Spawn 12 customers in rapid succession from both sides
         const bossCount = 12;
         for (let i = 0; i < bossCount; i++) {
             this.time.delayedCall(2200 + i * 350, () => {
@@ -262,12 +262,12 @@ class ShooScene extends Phaser.Scene {
         const girl = this.add.image(x, yVariation, 'approach_girl').setDepth(6);
         girl.setFlipX(!fromLeft);
 
-        // Speed varies per Vanilla Ice
+        // Speed varies per customer
         const speed = this.girlSpeed + Phaser.Math.Between(-8, 12);
         const dir = fromLeft ? 1 : -1;
 
-        // Thought bubble (mic — here to rap)
-        const thought = this.add.text(x, yVariation - 35, '🎤', {
+        // Thought bubble (a question for Tony)
+        const thought = this.add.text(x, yVariation - 35, '❓', {
             fontSize: '21px'
         }).setOrigin(0.5).setDepth(7);
         this.tweens.add({
@@ -293,7 +293,7 @@ class ShooScene extends Phaser.Scene {
         const girl = girlObj.sprite;
 
         // Brenda says "SHOO!"
-        const shooTexts = ['SHOO! \u{1F44B}', "HE'S TAKEN!", 'NOT TODAY, ICE!', 'BEAT IT!', 'GO ON, GIT! \u{1F645}', 'BACK OFF, VANILLA!'];
+        const shooTexts = ["WE'RE BOOKED!", 'CALL THE OFFICE!', 'NOT NOW!', "HE'S SWAMPED!", 'GET IN LINE! \u{1F645}', 'NO FREEBIES!'];
         const shoo = this.add.text(this.jennifer.x, this.jennifer.y - 30,
             shooTexts[Phaser.Math.Between(0, shooTexts.length - 1)], {
                 fontSize: '20px', fontFamily: 'Arial Black, Arial, sans-serif',
@@ -346,8 +346,8 @@ class ShooScene extends Phaser.Scene {
 
         const girl = girlObj.sprite;
 
-        // Vanilla Ice drops a rhyme
-        const flirt = this.add.text(girl.x, girl.y - 30, Phaser.Utils.Array.GetRandom(['Ice Ice Baby!','Stop, collaborate!','Yo Tony, kick it!','Too cold!','Word to your mother!','Alright STOP!']), { fontSize: '21px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#2E8B7F', stroke: '#000000', strokeThickness: 2 })
+        // Customer fires off a question
+        const flirt = this.add.text(girl.x, girl.y - 30, Phaser.Utils.Array.GetRandom(['Free estimate??','How much for a barn?','Can you start today?','Whats your best price?','Do you do ceilings?','Paint my fence too?']), { fontSize: '21px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#2E8B7F', stroke: '#000000', strokeThickness: 2 })
             .setOrigin(0.5).setDepth(50);
         this.tweens.add({
             targets: flirt, y: flirt.y - 20, alpha: 0,
@@ -421,7 +421,7 @@ class ShooScene extends Phaser.Scene {
         this.stopMusic();
         const w = 800, h = 450;
 
-        // Clear remaining Vanilla Ices
+        // Clear remaining customers
         this.girls.forEach(g => {
             if (g.sprite && g.sprite.active) g.sprite.destroy();
             if (g.thought && g.thought.active) g.thought.destroy();
@@ -429,7 +429,7 @@ class ShooScene extends Phaser.Scene {
         this.girls = [];
 
         const text = this.add.text(w / 2, h / 2 - 25,
-            "Tony's all yours, Brenda!\nShooed " + this.shooCount + ' Vanilla Ices!', {
+            "Tony can finally get to work, Brenda!\nShooed " + this.shooCount + ' customers!', {
                 fontSize: '27px', fontFamily: 'Arial Black, Arial, sans-serif',
                 color: '#FFD700', stroke: '#000000', strokeThickness: 4,
                 align: 'center', lineSpacing: 8

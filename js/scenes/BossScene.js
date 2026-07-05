@@ -74,15 +74,16 @@ class BossScene extends Phaser.Scene {
         this.bossIsDead = false;
         this.canShoot = false;
         this.shootCooldown = 0;
-        this.lives = 4;
+        this.lives = 999;       // birthday mode — unlimited lives
         this.isGameOver = false;
+        this.phase3FX = false;
 
         // Stop any leftover music and clean up on shutdown
         this.stopBossMusic();
         this.events.on('shutdown', () => this.stopBossMusic());
 
         // Lives display
-        this.livesText = this.add.text(w - 20, 12, '❤️❤️❤️❤️', {
+        this.livesText = this.add.text(w - 20, 12, '❤️ ∞', {
             fontSize: '22px'
         }).setOrigin(1, 0).setScrollFactor(0).setDepth(100);
 
@@ -357,6 +358,7 @@ class BossScene extends Phaser.Scene {
     bossDefeated() {
         this.bossIsDead = true;
         this.canShoot = false;
+        if (this.rainTimer) this.rainTimer.remove();
         this.playVictoryFanfare();
 
         const defeatText = this.add.text(
@@ -594,6 +596,11 @@ class BossScene extends Phaser.Scene {
             this.boss.updateBoss(time, delta);
         }
 
+        // Kick off the dramatic phase-3 storm once the boss is badly hurt
+        if (this.boss && this.bossActive && !this.bossIsDead && this.boss.phase === 3 && !this.phase3FX) {
+            this.startStormPhase3();
+        }
+
         // Move clouds
         this.clouds.forEach((cloud, i) => {
             cloud.x -= 0.15 + i * 0.05;
@@ -608,35 +615,34 @@ class BossScene extends Phaser.Scene {
     }
 
     hurtJennifer() {
-        if (this.isGameOver || !this.jennifer || this.jennifer.isHurt) return;
+        // Birthday mode: unlimited lives — just a flash, Mom can never lose the final fight
+        if (!this.jennifer || this.jennifer.isHurt) return;
         this.jennifer.hurt();
-        this.lives--;
-        this.updateLivesDisplay();
+    }
 
-        if (this.lives <= 0) {
-            this.isGameOver = true;
-            this.time.delayedCall(500, () => {
-                this.physics.pause();
-                const w = this.cameras.main.width;
-                const h = this.cameras.main.height;
-                this.add.rectangle(w / 2, h / 2, w, h, 0x000000, 0.7)
-                    .setScrollFactor(0).setDepth(400);
-                this.add.text(w / 2, h / 2 - 20, 'WASHED OUT! Try again!', {
-                    fontSize: '28px', fontFamily: 'Arial Black, Arial, sans-serif',
-                    color: '#FF4444', stroke: '#000000', strokeThickness: 5
-                }).setOrigin(0.5).setScrollFactor(0).setDepth(401);
-                const tapText = this.add.text(w / 2, h / 2 + 25, 'Tap to retry', {
-                    fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif',
-                    color: '#FFFFFF', stroke: '#000000', strokeThickness: 3
-                }).setOrigin(0.5).setScrollFactor(0).setDepth(401);
-                this.tweens.add({ targets: tapText, alpha: 0.3, duration: 600, yoyo: true, repeat: -1 });
-                this.stopBossMusic();
-                this.input.once('pointerdown', () => {
-                    this.controls.destroy();
-                    this.scene.restart();
+    startStormPhase3() {
+        this.phase3FX = true;
+        const w = this.cameras.main.width, h = this.cameras.main.height;
+
+        // The sky darkens as the storm peaks
+        const dark = this.add.rectangle(w / 2, h / 2, w, h, 0x0a1420, 0).setDepth(3).setScrollFactor(0);
+        this.tweens.add({ targets: dark, fillAlpha: 0.45, duration: 800 });
+
+        // Driving rain
+        this.rainTimer = this.time.addEvent({
+            delay: 70, loop: true, callback: () => {
+                if (this.bossIsDead) return;
+                const rx = Phaser.Math.Between(0, w);
+                const drop = this.add.rectangle(rx, -10, 2, 16, 0x9fd3e8, 0.55).setDepth(4).setAngle(8);
+                this.tweens.add({
+                    targets: drop, y: h + 10, x: rx - 30,
+                    duration: Phaser.Math.Between(450, 750),
+                    onComplete: () => drop.destroy()
                 });
-            });
-        }
+            }
+        });
+
+        this.cameras.main.shake(500, 0.006);
     }
 
     updateLivesDisplay() {

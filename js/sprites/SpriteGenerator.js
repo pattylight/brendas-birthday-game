@@ -932,7 +932,7 @@ const SpriteGen = {
         return canvas;
     },
 
-    // Vanilla Ice showing up (again) to hang with Tony — key 'approach_girl'
+    // A customer coming to bug Tony with painting questions — key 'approach_girl'
     generateApproachGirl() {
         const canvas = document.createElement('canvas');
         canvas.width = 32;
@@ -940,80 +940,70 @@ const SpriteGen = {
         const ctx = canvas.getContext('2d');
 
         const skin = '#E8B98F';
-        const hair = '#E9C766';     // blond flat-top
-        const jacketA = '#E0218A';  // hot magenta
-        const jacketB = '#19C3C8';  // teal
 
         // Shadow
         ctx.fillStyle = 'rgba(0,0,0,0.12)';
         ctx.beginPath(); ctx.ellipse(16, 50, 10, 2, 0, 0, Math.PI * 2); ctx.fill();
 
-        // Baggy parachute pants
-        ctx.fillStyle = '#20232B';
-        ctx.fillRect(8, 37, 7, 12);
-        ctx.fillRect(17, 37, 7, 12);
-        ctx.fillStyle = '#333844';
-        ctx.fillRect(11, 37, 1, 12);
-        ctx.fillRect(20, 37, 1, 12);
-        // White hi-tops
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(7, 48, 9, 4);
-        ctx.fillRect(16, 48, 9, 4);
+        // Legs (tan chinos)
+        ctx.fillStyle = '#B99A6B';
+        ctx.fillRect(10, 37, 5, 12);
+        ctx.fillRect(17, 37, 5, 12);
+        // Shoes
+        ctx.fillStyle = '#5a3a22';
+        ctx.fillRect(9, 48, 7, 3);
+        ctx.fillRect(17, 48, 7, 3);
 
-        // Color-block jacket
-        ctx.fillStyle = jacketA;
-        ctx.fillRect(7, 21, 18, 17);
-        ctx.fillStyle = jacketB;
+        // Polo shirt
+        ctx.fillStyle = '#3B7A57';
         ctx.beginPath();
-        ctx.moveTo(7, 28); ctx.lineTo(16, 31); ctx.lineTo(25, 28);
-        ctx.lineTo(25, 33); ctx.lineTo(16, 36); ctx.lineTo(7, 33); ctx.closePath(); ctx.fill();
-        // Zipper
-        ctx.fillStyle = '#FFD700';
-        ctx.fillRect(15.5, 21, 1, 16);
+        ctx.moveTo(9, 22); ctx.lineTo(7, 38); ctx.lineTo(25, 38); ctx.lineTo(23, 22); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#2f6246';
+        ctx.fillRect(13, 21, 6, 3);   // collar
+        ctx.fillStyle = '#E8E8E8';
+        ctx.fillRect(15.5, 24, 1, 6);  // placket
 
         // Arms
-        ctx.fillStyle = jacketA;
-        ctx.fillRect(4, 22, 4, 12);
-        ctx.fillRect(24, 22, 4, 12);
+        ctx.fillStyle = '#3B7A57';
+        ctx.fillRect(5, 23, 4, 11);
+        ctx.fillRect(23, 23, 4, 11);
         // Hands
         ctx.fillStyle = skin;
-        ctx.fillRect(4, 33, 4, 3);
-        ctx.fillRect(24, 33, 4, 3);
+        ctx.fillRect(5, 33, 4, 3);
+        ctx.fillRect(23, 33, 4, 3);
 
         // Neck + head
         ctx.fillStyle = skin;
-        ctx.fillRect(13, 17, 6, 5);
-        ctx.beginPath(); ctx.arc(16, 12, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.fillRect(13, 16, 6, 6);
+        ctx.beginPath(); ctx.arc(16, 11, 8, 0, Math.PI * 2); ctx.fill();
 
-        // Tall blond flat-top with faded sides
-        ctx.fillStyle = hair;
-        ctx.fillRect(9, 1, 14, 6);
-        ctx.fillRect(9, 6, 3, 4);
-        ctx.fillRect(20, 6, 3, 4);
-        ctx.strokeStyle = '#B89A45';
-        ctx.lineWidth = 0.6;
-        ctx.beginPath();
-        ctx.moveTo(9, 9); ctx.lineTo(12, 9); ctx.moveTo(20, 9); ctx.lineTo(23, 9); ctx.stroke();
+        // Brown hair
+        ctx.fillStyle = '#5C3A21';
+        ctx.beginPath(); ctx.arc(16, 8, 8, Math.PI, 2 * Math.PI); ctx.fill();
+        ctx.fillRect(8, 4, 16, 4);
+        ctx.fillRect(8, 4, 3, 8);
+        ctx.fillRect(21, 4, 3, 8);
 
-        // Sunglasses
-        ctx.fillStyle = '#111';
-        ctx.fillRect(9, 10, 6, 3);
-        ctx.fillRect(17, 10, 6, 3);
-        ctx.fillRect(15, 11, 2, 1);
-        ctx.fillStyle = '#7fd7ff';
-        ctx.fillRect(10, 10, 2, 1);
-        ctx.fillRect(18, 10, 2, 1);
+        // Glasses + eyes
+        ctx.fillStyle = '#222222';
+        ctx.fillRect(12, 10, 2, 2);
+        ctx.fillRect(18, 10, 2, 2);
+        ctx.strokeStyle = '#333333'; ctx.lineWidth = 0.8;
+        ctx.strokeRect(11, 9, 4, 4);
+        ctx.strokeRect(17, 9, 4, 4);
+        ctx.beginPath(); ctx.moveTo(15, 11); ctx.lineTo(17, 11); ctx.stroke();
 
-        // Cocky grin
-        ctx.strokeStyle = '#B5734F';
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.arc(16, 15, 3, 0.15, Math.PI - 0.15); ctx.stroke();
+        // Friendly smile
+        ctx.strokeStyle = '#B5734F'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(16, 14, 3, 0.15, Math.PI - 0.15); ctx.stroke();
 
-        // Mic in hand (dropping rhymes)
-        ctx.fillStyle = '#222';
-        ctx.fillRect(26, 30, 2, 7);
-        ctx.fillStyle = '#999';
-        ctx.beginPath(); ctx.arc(27, 29, 3, 0, Math.PI * 2); ctx.fill();
+        // Paint swatch card in hand (they've "got questions")
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(26, 30, 6, 12);
+        ['#E24A4A', '#E2A64A', '#4AC26E', '#4A8CE2'].forEach((c, i) => {
+            ctx.fillStyle = c;
+            ctx.fillRect(27, 31 + i * 2.6, 4, 2.3);
+        });
 
         return canvas;
     },

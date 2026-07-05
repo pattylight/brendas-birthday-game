@@ -180,7 +180,7 @@ class VictoryScene extends Phaser.Scene {
         }).setOrigin(0.5).setDepth(10);
 
         // Type out the message character by character
-        const fullMessage = "Happy 61st Birthday, Mom!\nThanks for a lifetime of love, laughs,\nand letting us raid your tequila stash.\nHere's to many more miles in the RV!\n\nLove Patrick, Tony, Kimberly,\nRylee, Declan & Maggie";
+        const fullMessage = "Happy 61st Birthday, Mom!\nThanks for a lifetime of love, laughs,\nand always being there for all of us.\nHere's to many more miles in the RV!\n\nLove Patrick, Tony, Kimberly,\nRylee, Declan & Maggie";
         let charIndex = 0;
 
         this.time.delayedCall(2500, () => {
