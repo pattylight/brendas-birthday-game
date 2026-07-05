@@ -98,7 +98,7 @@ class BossScene extends Phaser.Scene {
         const h = this.cameras.main.height;
 
         // Maggie senses danger!
-        const text1 = this.add.text(w / 2, h / 2 - 60, 'Maggie senses danger...', {
+        const text1 = this.add.text(w / 2, h / 2 - 60, "Maggie's always watching over you...", {
             fontSize: '24px',
             fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700',
@@ -226,7 +226,7 @@ class BossScene extends Phaser.Scene {
         // Create the storm boss
         this.boss = new ChocolateBoss(this, w / 2, -50);
         this.boss.setDepth(8);
-        this.physics.add.collider(this.boss, this.platforms);
+        // No floor collider — the storm is a flying boss that hovers (prevents it sinking through the floor)
         this.boss.enter();
 
         // Health bar

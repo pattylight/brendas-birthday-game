@@ -7,8 +7,7 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
 
         this.body.setSize(70, 70);
         this.body.setOffset(13, 13);
-        this.body.setAllowGravity(true);
-        this.body.setBounce(0.1);
+        this.body.setAllowGravity(false); // flying storm — hovers, never sinks into the floor
         this.setCollideWorldBounds(true);
 
         this.maxHP = 12;
@@ -36,7 +35,7 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
             ease: 'Bounce.easeOut',
             onComplete: () => {
                 this.isEntering = false;
-                this.body.setAllowGravity(true);
+                this.body.setAllowGravity(false); // keep hovering
                 this.scene.cameras.main.shake(200, 0.01);
             }
         });
@@ -310,9 +309,16 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
                     ease: 'Power4',
                     onComplete: () => {
                         if (this.isDead) return;
-                        this.body.setAllowGravity(true);
                         this.scene.cameras.main.shake(300, 0.02);
-                        this.slamming = false;
+
+                        // Rise back up to hover (never rest on / sink through the floor)
+                        this.scene.tweens.add({
+                            targets: this,
+                            y: startY,
+                            duration: 500,
+                            ease: 'Sine.easeOut',
+                            onComplete: () => { if (!this.isDead) this.slamming = false; }
+                        });
 
                         // Shockwave
                         const wave = this.scene.add.rectangle(
@@ -362,6 +368,13 @@ class ChocolateBoss extends Phaser.Physics.Arcade.Sprite {
             return;
         }
         this.alpha = 1;
+
+        // Safety: keep the storm hovering above the floor so it's always hittable
+        const floorLimit = this.scene.cameras.main.height - 130;
+        if (this.y > floorLimit) {
+            this.y = floorLimit;
+            if (this.body) this.body.setVelocityY(0);
+        }
 
         // Chase Jennifer (not during slam)
         if (!this.slamming && !this.telegraphing) {

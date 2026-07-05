@@ -91,7 +91,7 @@ class TeslaScene extends Phaser.Scene {
         // === GAME STATE ===
         this.speed = 200;
         this.distance = 0;
-        this.targetDistance = 10000;
+        this.targetDistance = 16000;
         this.lives = 3;
         this.isInvulnerable = false;
         this.obstacles = [];
@@ -208,7 +208,7 @@ class TeslaScene extends Phaser.Scene {
         // Destination label
         this.add.text(w / 2 + 110, 14, 'CAMP', { fontSize: '18px', fontFamily: 'Arial Black, Arial, sans-serif', color: '#FFFFFF', stroke: '#000000', strokeThickness: 2 }).setOrigin(0, 0.5).setDepth(100);
 
-        this.distText = this.add.text(w / 2, 30, '0m / 6000m', {
+        this.distText = this.add.text(w / 2, 30, '0m / 16000m', {
             fontSize: '16px', fontFamily: 'Arial Black, Arial, sans-serif',
             color: '#FFD700', stroke: '#000000', strokeThickness: 2
         }).setOrigin(0.5).setDepth(100);

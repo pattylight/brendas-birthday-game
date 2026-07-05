@@ -61,9 +61,9 @@ class WakeUpScene extends Phaser.Scene {
         this.add.ellipse(w / 2 + 50, h - 140, 50, 25, 0xF5F5F5).setDepth(1);
 
         // Brenda sleeping (just head on pillow)
-        this.jenHead = this.add.circle(w / 2 - 50, h - 148, 12, 0xC68642).setDepth(3);
-        // Hair
-        this.add.circle(w / 2 - 50, h - 153, 13, 0x1a1a1a).setDepth(2);
+        this.jenHead = this.add.circle(w / 2 - 50, h - 148, 12, 0xE7B98F).setDepth(3);
+        // Hair (blonde)
+        this.add.circle(w / 2 - 50, h - 153, 13, 0xE6C069).setDepth(2);
         // Zzz
         this.jenZzz = this.add.text(w / 2 - 30, h - 175, 'z z z', {
             fontSize: '14px', fontFamily: 'Arial', color: '#AAAAFF'
@@ -92,8 +92,12 @@ class WakeUpScene extends Phaser.Scene {
         // Fade in from black
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
+        // Sleepy snoring before the alarm goes off
+        this.time.delayedCall(400, () => this.playSnore(70));
+        this.time.delayedCall(1000, () => this.playSnore(95));
+
         // === CUTSCENE SEQUENCE ===
-        this.time.delayedCall(1500, () => this.alarmGoesOff());
+        this.time.delayedCall(1600, () => this.alarmGoesOff());
     }
 
     alarmGoesOff() {
@@ -167,7 +171,7 @@ class WakeUpScene extends Phaser.Scene {
                 this.showDialogue("Brenda", "Oh no... it's 7:45!!", '#FF69B4', () => {
                     this.showDialogue("Tony", "OUR CAMPSITE IS BOOKED FOR SUNSET!", '#88CCFF', () => {
                         this.showDialogue("Brenda", "WE'RE GONNA BE LATE!!", '#FF69B4', () => {
-                            this.showDialogue("Tony", "Quick!! Get Maggie, I'll start the RV!!", '#88CCFF', () => {
+                            this.showDialogue("Tony", "Quick!! Grab the keys, I'll start the RV!!", '#88CCFF', () => {
                                 this.rushOut();
                             });
                         });
@@ -275,6 +279,27 @@ class WakeUpScene extends Phaser.Scene {
                 });
             });
         });
+    }
+
+    playSnore(baseFreq) {
+        try {
+            const ctx = this.sound.context;
+            if (!ctx) return;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.type = 'sawtooth';
+            const t = ctx.currentTime;
+            // inhale rumble rising, then exhale falling — a gentle snore
+            osc.frequency.setValueAtTime(baseFreq, t);
+            osc.frequency.linearRampToValueAtTime(baseFreq * 1.6, t + 0.5);
+            osc.frequency.linearRampToValueAtTime(baseFreq * 0.8, t + 0.9);
+            gain.gain.setValueAtTime(0.0001, t);
+            gain.gain.linearRampToValueAtTime(0.05, t + 0.4);
+            gain.gain.linearRampToValueAtTime(0.0001, t + 0.95);
+            osc.start(t);
+            osc.stop(t + 1.0);
+        } catch (e) {}
     }
 
     playAlarmSound() {

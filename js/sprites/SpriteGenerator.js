@@ -54,10 +54,11 @@ const SpriteGen = {
         sunglasses: '#2b2b2b',
         sunglassesLens: '#3a5a6a',
         sunglassesShine: '#FFFACD',
-        dressTop: '#2E8B7F',    // teal camping shirt
-        dressBottom: '#7A5A38', // khaki/hiking shorts
-        dressAccent: '#F4A259', // sunset-orange accent
-        shoes: '#5A3A22',       // hiking boots
+        dressTop: '#C75D57',    // casual coral top
+        dressBottom: '#3E5C86', // blue jeans (hips)
+        dressAccent: '#EFE7D6', // light trim
+        shoes: '#454545',       // casual sneakers
+        jeans: '#3E5C86',       // blue jeans (legs)
         white: '#FFFFFF',
         // MAGGIE — German Shepherd recolor (reuses "pom" keys)
         pomFur: '#6E4A2A',      // dark brown ears/outline
@@ -166,6 +167,13 @@ const SpriteGen = {
         jump[25] = [_,_,_,_,_,_,_,_,_,_,_,_,c.shoes,c.shoes,c.shoes,_,_,c.shoes,c.shoes,c.shoes,_,_,_,_,_,_,_,_,_,_,_,_];
         jump[26] = [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_];
         jump[27] = [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_];
+
+        // Turn the lower legs into denim jeans across every frame (rows 23-25 are the shins)
+        [idle1, run1, run2, run3, jump].forEach(frame => {
+            for (let ry = 23; ry <= 25; ry++) {
+                if (frame[ry]) frame[ry] = frame[ry].map(px => px === c.skin ? c.jeans : px);
+            }
+        });
 
         return { idle: idle1, run: [run1, run2, run3, run2], jump: jump };
     },
@@ -924,75 +932,88 @@ const SpriteGen = {
         return canvas;
     },
 
-    // Small raccoon sneaking toward the campsite food — key 'approach_girl'
+    // Vanilla Ice showing up (again) to hang with Tony — key 'approach_girl'
     generateApproachGirl() {
         const canvas = document.createElement('canvas');
         canvas.width = 32;
         canvas.height = 52;
         const ctx = canvas.getContext('2d');
 
-        const fur = '#8A8F98';
-        const furDark = '#5D636C';
-        const cream = '#D8DBE0';
+        const skin = '#E8B98F';
+        const hair = '#E9C766';     // blond flat-top
+        const jacketA = '#E0218A';  // hot magenta
+        const jacketB = '#19C3C8';  // teal
 
         // Shadow
-        ctx.fillStyle = 'rgba(0,0,0,0.1)';
+        ctx.fillStyle = 'rgba(0,0,0,0.12)';
         ctx.beginPath(); ctx.ellipse(16, 50, 10, 2, 0, 0, Math.PI * 2); ctx.fill();
 
-        // Ringed tail
-        ctx.fillStyle = furDark;
-        ctx.beginPath(); ctx.ellipse(26, 40, 4, 8, 0.5, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = fur; ctx.fillRect(24, 36, 5, 2);
-        ctx.fillStyle = furDark; ctx.fillRect(24, 40, 5, 2);
+        // Baggy parachute pants
+        ctx.fillStyle = '#20232B';
+        ctx.fillRect(8, 37, 7, 12);
+        ctx.fillRect(17, 37, 7, 12);
+        ctx.fillStyle = '#333844';
+        ctx.fillRect(11, 37, 1, 12);
+        ctx.fillRect(20, 37, 1, 12);
+        // White hi-tops
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(7, 48, 9, 4);
+        ctx.fillRect(16, 48, 9, 4);
 
-        // Feet
-        ctx.fillStyle = furDark;
-        ctx.fillRect(10, 44, 5, 5);
-        ctx.fillRect(17, 44, 5, 5);
-
-        // Body
-        ctx.fillStyle = fur;
-        ctx.beginPath(); ctx.ellipse(16, 34, 10, 12, 0, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = cream;
-        ctx.beginPath(); ctx.ellipse(16, 36, 5, 8, 0, 0, Math.PI * 2); ctx.fill();
-
-        // Grabby paws reaching up
-        ctx.fillStyle = furDark;
-        ctx.beginPath(); ctx.arc(8, 26, 2.5, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(24, 26, 2.5, 0, Math.PI * 2); ctx.fill();
-
-        // Head
-        ctx.fillStyle = fur;
-        ctx.beginPath(); ctx.arc(16, 14, 9, 0, Math.PI * 2); ctx.fill();
-        // Ears
-        ctx.beginPath(); ctx.moveTo(9, 8); ctx.lineTo(7, 2); ctx.lineTo(14, 7); ctx.fill();
-        ctx.beginPath(); ctx.moveTo(23, 8); ctx.lineTo(25, 2); ctx.lineTo(18, 7); ctx.fill();
-        // Cream muzzle
-        ctx.fillStyle = cream;
-        ctx.beginPath(); ctx.arc(16, 17, 5, 0, Math.PI * 2); ctx.fill();
-        // Bandit mask
-        ctx.fillStyle = '#2b2b2b';
+        // Color-block jacket
+        ctx.fillStyle = jacketA;
+        ctx.fillRect(7, 21, 18, 17);
+        ctx.fillStyle = jacketB;
         ctx.beginPath();
-        ctx.moveTo(8, 13); ctx.lineTo(24, 13); ctx.lineTo(22, 18);
-        ctx.lineTo(18, 15); ctx.lineTo(14, 15); ctx.lineTo(10, 18); ctx.closePath(); ctx.fill();
-        // Eyes
-        ctx.fillStyle = '#FFE44D';
-        ctx.beginPath(); ctx.arc(12, 15, 2, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(20, 15, 2, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.beginPath(); ctx.arc(12, 15, 1, 0, Math.PI * 2); ctx.fill();
-        ctx.beginPath(); ctx.arc(20, 15, 1, 0, Math.PI * 2); ctx.fill();
-        // Nose
-        ctx.fillStyle = '#1a1a1a';
-        ctx.beginPath(); ctx.arc(16, 19, 1.5, 0, Math.PI * 2); ctx.fill();
+        ctx.moveTo(7, 28); ctx.lineTo(16, 31); ctx.lineTo(25, 28);
+        ctx.lineTo(25, 33); ctx.lineTo(16, 36); ctx.lineTo(7, 33); ctx.closePath(); ctx.fill();
+        // Zipper
+        ctx.fillStyle = '#FFD700';
+        ctx.fillRect(15.5, 21, 1, 16);
 
-        // Little tequila bottle they're eyeing (above head)
-        ctx.fillStyle = '#C9A24B';       // amber tequila
-        ctx.fillRect(14, 2, 5, 6);       // body
-        ctx.fillStyle = '#7A5A2A';       // neck + cap
-        ctx.fillRect(15, 0, 3, 2);
-        ctx.fillStyle = '#F2E3B0';       // label
-        ctx.fillRect(14, 4, 5, 2);
+        // Arms
+        ctx.fillStyle = jacketA;
+        ctx.fillRect(4, 22, 4, 12);
+        ctx.fillRect(24, 22, 4, 12);
+        // Hands
+        ctx.fillStyle = skin;
+        ctx.fillRect(4, 33, 4, 3);
+        ctx.fillRect(24, 33, 4, 3);
+
+        // Neck + head
+        ctx.fillStyle = skin;
+        ctx.fillRect(13, 17, 6, 5);
+        ctx.beginPath(); ctx.arc(16, 12, 8, 0, Math.PI * 2); ctx.fill();
+
+        // Tall blond flat-top with faded sides
+        ctx.fillStyle = hair;
+        ctx.fillRect(9, 1, 14, 6);
+        ctx.fillRect(9, 6, 3, 4);
+        ctx.fillRect(20, 6, 3, 4);
+        ctx.strokeStyle = '#B89A45';
+        ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        ctx.moveTo(9, 9); ctx.lineTo(12, 9); ctx.moveTo(20, 9); ctx.lineTo(23, 9); ctx.stroke();
+
+        // Sunglasses
+        ctx.fillStyle = '#111';
+        ctx.fillRect(9, 10, 6, 3);
+        ctx.fillRect(17, 10, 6, 3);
+        ctx.fillRect(15, 11, 2, 1);
+        ctx.fillStyle = '#7fd7ff';
+        ctx.fillRect(10, 10, 2, 1);
+        ctx.fillRect(18, 10, 2, 1);
+
+        // Cocky grin
+        ctx.strokeStyle = '#B5734F';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(16, 15, 3, 0.15, Math.PI - 0.15); ctx.stroke();
+
+        // Mic in hand (dropping rhymes)
+        ctx.fillStyle = '#222';
+        ctx.fillRect(26, 30, 2, 7);
+        ctx.fillStyle = '#999';
+        ctx.beginPath(); ctx.arc(27, 29, 3, 0, Math.PI * 2); ctx.fill();
 
         return canvas;
     },
